@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="authour" content="monkythe7th">
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+<link rel="icon" href="{{ url_for('static', filename='imgs/photo.png') }}">
+</head>
+<body>
+<header class="header clear" id="header">
+{% block header %}{% endblock %}
+</header>
+<main class="main clear" id="main">{% block content %}{% endblock %}</main>
+<footer class="footer" id="footer">
+</footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="{{ url_for('static',filename='js/scripts.js') }}"></script>
+</body>
+</html>

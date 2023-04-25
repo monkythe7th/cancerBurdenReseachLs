@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}
+Cancer Burden Research Project
+{% endblock %}
+{% block header %}
+<h1>
+    Cancer Screening Database Lesotho
+</h1>
+<h2>Screening</h2>
+{% endblock %}
+{% block content %}
+<form action="" method="post" class="form screening--form">
+    <label for="previous__screening">Previous Screening</label><input type="checkbox" name="previous__screening" id="previous__screening" class="input screening--input previous__screening">
+    <select name="previous__screening__type" id="previous__screening--dropdown" disabled>
+        <option value="cervical">Cervical</option>
+        <option value="prostate">Prostate</option>
+        <option value="breast">Breast</option>
+    </select>
+    <label for="">treatment</label><input type="text" name="" id="" class="input screening--input " disabled>
+    <label for="">Date Results</label><input type="date" name="" id="" class="input screening--input " disabled>
+    <label for="refering__facility">Refering Facility</label><input type="text" name="refering__facility" id="refering__facility" class="input screening--input refering__facility">
+    <label for="family__planning">Family Planning Methods</label><select name="family__planning" id="family__planning" class="input screening--input family__planning">
+        <option value="iud">IUD</option>
+        <option value="condom">Condom</option>
+        <option value="">IUD</option>
+        <option value="iud">IUD</option>
+        <option value="iud">IUD</option>
+        <option value="iud">IUD</option>
+        <option value="iud">IUD</option>
+        <option value="iud">IUD</option>
+        <option value="iud">IUD</option>
+        <option value="iud">IUD</option>
+        <option value="iud">IUD</option>
+        <option value="iud">IUD</option>
+        <option value="iud">IUD</option>
+        <option value="iud">IUD</option>
+        <option value="iud">IUD</option>
+        <option value="iud">IUD</option>
+    </select>
+    <label for="">HIV Status</label><select name="" id="" class="input screening--input ">
+
+    </select>
+    <label for="">HTS Offered</label><input type="text" name="" id="" class="input screening--input ">
+    <label for="">HIV Test Results</label><input type="text" name="" id="" class="input screening--input ">
+    <label for="">Purpose of Visit</label><input type="text" name="" id="" class="input screening--input ">
+    <label for="">Type of Screening</label><input type="text" name="" id="" class="input screening--input ">
+    <label for="">Method of Screening</label><select name="" id="" class="input screening--input ">
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+    </select>
+    <label for="">Screening Results</label><input type="text" name="" id="" class="input screening--input ">
+    <label for="positive">Positive</label><input type="radio" name="positive" id="" class="input screening--input ">
+    <label for="negative">Negative</label><input type="radio" name="negative" id="" class="input screening--input ">
+    <p>Management and Treatment</p>
+    <label for=""></label><input type="checkbox" name="" id="" class="input screening--input ">
+    <label for=""></label><input type="checkbox" name="" id="" class="input screening--input ">
+    <label for=""></label><input type="checkbox" name="" id="" class="input screening--input ">
+    <label for=""></label><input type="checkbox" name="" id="" class="input screening--input ">
+    <label for=""></label><input type="checkbox" name="" id="" class="input screening--input ">
+    <label for=""></label><input type="checkbox" name="" id="" class="input screening--input ">
+    <label for="">Next Visit</label><input type="text" name="" id="" class="input screening--input ">
+    <label for=""></label><input type="text" name="" id="" class="input screening--input ">
+    <label for=""></label><input type="text" name="" id="" class="input screening--input ">
+    <input type="submit" value="Next">
+</form>
+{% endblock %}
