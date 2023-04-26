@@ -10,13 +10,15 @@ Cancer Burden Research Project
 {% endblock %}
 {% block content %}
 <form action="" method="post" class="form screening--form" id="screening--form">
-    <label for="previous__screening">Previous Screening</label>
+    <p for="previous__screening">Previous Screening</p>
     <label for="yes">Yes</label><input type="radio" name="previous__screening" id="previous__screening--yes" class="input screening--input previous__screening--radio" onclick="toggleDisabled(true)">
     <label for="no">No</label><input type="radio" name="previous__screening" id="previous__screening--no" class="input screening--input previous__screening--radio" onclick="toggleDisabled(false)">
     <select name="previous__screening__type" id="previous__screening--dropdown" disabled class="previous__screening">
         <option value="cervical">Cervical</option>
         <option value="prostate">Prostate</option>
         <option value="breast">Breast</option>
+        <option value="lung">Lung</option>
+        <option value="liver">Liver</option>
     </select>
     <label for="">treatment</label><input type="text" name="" id="" class="input screening--input previous__screening" disabled>
     <label for="">Date Results</label><input type="date" name="" id="" class="input screening--input previous__screening" disabled>
@@ -24,48 +26,63 @@ Cancer Burden Research Project
     <label for="family__planning">Family Planning Methods</label><select name="family__planning" id="family__planning" class="input screening--input family__planning">
         <option value="iud">IUD</option>
         <option value="condom">Condom</option>
-        <option value="">IUD</option>
-        <option value="iud">IUD</option>
-        <option value="iud">IUD</option>
-        <option value="iud">IUD</option>
-        <option value="iud">IUD</option>
-        <option value="iud">IUD</option>
-        <option value="iud">IUD</option>
-        <option value="iud">IUD</option>
-        <option value="iud">IUD</option>
-        <option value="iud">IUD</option>
-        <option value="iud">IUD</option>
-        <option value="iud">IUD</option>
-        <option value="iud">IUD</option>
-        <option value="iud">IUD</option>
+        <option value="">Mini Pills</option>
+        <option value="iud">Tubal ligation</option>
+        <option value="iud">Combined Pills</option>
+        <option value="iud">Injection</option>
+        <option value="iud">CVR</option>
+        <option value="iud">vasectomy</option>
+        <option value="iud">LAM</option>
+        <option value="iud">Standard Days</option>
+        <option value="iud">Basal Body Temperature</option>
+        <option value="iud">Two Day</option>
+        <option value="iud">Sympto-thermal</option>
+        <option value="iud">Emergency Pills</option>
+        <option value="iud">Withdrawal</option>
     </select>
-    <label for="">HIV Status</label><select name="" id="" class="input screening--input ">
-
+    <label for="hiv__status">HIV Status</label><select name="hiv__status" id="hiv__status" class="input screening--input ">
+        <option value="positive_on_art">Positive on ART</option>
+        <option value="positive_not_on_art">Positive not on ART</option>
+        <option value="negative">Negative</option>
+        <option value="unknown">Unknown</option>
     </select>
-    <label for="">HTS Offered</label><input type="text" name="" id="" class="input screening--input ">
-    <label for="">HIV Test Results</label><input type="text" name="" id="" class="input screening--input ">
-    <label for="">Purpose of Visit</label><input type="text" name="" id="" class="input screening--input ">
-    <label for="">Type of Screening</label><input type="text" name="" id="" class="input screening--input ">
-    <label for="">Method of Screening</label><select name="" id="" class="input screening--input ">
-        <option value=""></option>
-        <option value=""></option>
-        <option value=""></option>
-        <option value=""></option>
-        <option value=""></option>
+    <label for="hts__offered">HTS Offered</label><input type="text" name="hts__offered" id="hts__offered" class="input screening--input ">
+    <label for="hiv__results">HIV Test Results</label><input type="text" name="hiv__results" id="hiv__results" class="input screening--input ">
+    <label for="purpose__visit">Purpose of Visit</label><input type="text" name="purpose__visit" id="purpose__visit" class="input screening--input ">
+    <label for="screening__type">Type of Screening</label><input type="text" name="screening__type" id="screening__type" class="input screening--input ">
+    <label for="screening__methods">Method of Screening</label><select name="screening__methods" id="screening__methods" class="input screening--input ">
+        <option value="">Mamogram</option>
+        <option value="">HPV Test</option>
+        <option value="">Pap Smear</option>
+        <option value="">colonoscopy</option>
+        <option value="">Sigmoidoscopy</option>
+        <option value="">CT scan</option>
+        <option value="">MRI</option>
+        <option value="">Ultrasound</option>
+        <option value="">MCD</option>
+        <option value="">PSA</option>
     </select>
-    <label for="">Screening Results</label><input type="text" name="" id="" class="input screening--input ">
+    <label for="screening__results">Screening Results</label><textarea name="screening__results" id="screening__results" class="input screening--input "></textarea>
     <label for="positive">Positive</label><input type="radio" name="results" id="" class="input screening--input ">
     <label for="negative">Negative</label><input type="radio" name="results" id="" class="input screening--input ">
     <p>Management and Treatment</p>
-    <label for=""></label><input type="checkbox" name="" id="" class="input screening--input ">
-    <label for=""></label><input type="checkbox" name="" id="" class="input screening--input ">
-    <label for=""></label><input type="checkbox" name="" id="" class="input screening--input ">
-    <label for=""></label><input type="checkbox" name="" id="" class="input screening--input ">
-    <label for=""></label><input type="checkbox" name="" id="" class="input screening--input ">
-    <label for=""></label><input type="checkbox" name="" id="" class="input screening--input ">
-    <label for="">Next Visit</label><input type="text" name="" id="" class="input screening--input ">
-    <label for=""></label><input type="text" name="" id="" class="input screening--input ">
-    <label for=""></label><input type="text" name="" id="" class="input screening--input ">
+    <div class="management__and__treatment--options">
+        <label for="thermo_coagulation">Thermo-coagulation</label><input type="checkbox" name="thermo_coagulation" id="thermo_coagulation" class="input screening--input ">
+    </div>
+    <div class="management__and__treatment--options">
+        <label for="cryotherapy">Cryotherapy</label><input type="checkbox" name="cryotherapy" id="cryotherapy" class="input screening--input ">
+    </div>
+    <div class="management__and__treatment--options">
+        <label for="leep">LEEP</label><input type="checkbox" name="leep" id="leep" class="input screening--input ">
+    </div>
+    <div class="management__and__treatment--options">
+        <label for="boipsy__referal">Refered for Biopsy</label><input type="checkbox" name="boipsy__referal" id="boipsy__referal" class="input screening--input ">
+    </div>
+    <div class="management__and__treatment--options">
+        <label for="treatment__referal">Refered for Treatment</label><input type="checkbox" name="treatment__referal" id="treatment__referal" class="input screening--input ">
+    </div>
+    <label for="next__visit">Next Visit</label><input type="date" name="next__visit" id="next__visit" class="input screening--input ">
+    <label for="comments">Comments</label><textarea name="comments" id="comments" class="input screening--input "></textarea>
     <input type="submit" value="Next">
 </form>
 {% endblock %}

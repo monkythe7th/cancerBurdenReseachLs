@@ -40,3 +40,7 @@ def source():
 # @login_required
 def follow_up():
     pass
+
+# @login_required
+def view_records():
+    pass

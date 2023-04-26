@@ -23,8 +23,13 @@ header {
     margin: auto;
 }
 
-input, select {
+.input, select {
     width: 100%;
     margin: 2.5px auto 12.5px;
     padding: 5px;
+}
+
+.input.screening--input[type="radio"],
+.input[type='checkbox'] {
+    width: 50px;
 }
