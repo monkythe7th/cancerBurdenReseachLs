@@ -5,7 +5,7 @@ def create_app():
 
     @app.route('/')
     def index():
-        return render_template('demographic.html')
+        return render_template('screening.html')
 
     return app
 

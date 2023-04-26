@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 18px sans-serif;
+}
+
+header {
+    height: 100px;
+    text-align: center;
+}
+
+.auth--form {
+    width: 60%;
+    height: 60%;
+    margin: auto;
+}
+
+.form {
+    width: 75%;
+    margin: auto;
+}
+
+input, select {
+    width: 100%;
+    margin: 2.5px auto 12.5px;
+    padding: 5px;
+}
