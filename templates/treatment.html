@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}
+Cancer Burden Research Project
+{% endblock %}
+{% block header %}
+<h1>
+    Cancer Screening Database Lesotho
+</h1>
+<h2>Treatment</h2>
+{% endblock %}
+{% block content %}
+<form action="" method="post" class="treatment--form">
+    <div class="form--div">
+        <label for="">Surgery</label><input type="checkbox" name="" id="">
+        <label for="">Radiotherapy</label><input type="checkbox" name="" id="">
+        <label for="">Chemotherapy</label><input type="checkbox" name="" id="">
+        <label for="">Hormonal</label><input type="checkbox" name="" id="">
+        <label for="">Immunotherapy</label><input type="checkbox" name="" id="">
+        <label for="">Other (Specify)</label><input type="text" name="" id="">
+    </div>
+    <div class="form--div"><label for="">Date of treatment</label><input type="date" name="" id=""></div>
+    <input type="submit" value="Next">
+</form>
+{% endblock %}

@@ -12,7 +12,7 @@ def patient_demographic():
             PatientDAO.patient_demographic(request.form)
         finally:
             return redirect(url_for('ui.screening'))
-    return render_template('demographics.html')
+    return render_template('demographic.html')
 
 @bp.route('/screening')
 # @login_required
@@ -24,23 +24,27 @@ def screening():
             return redirect(url_for('ui.tumour'))
     return render_template('screening.html')
         
-@bp.route('tumour')
+@bp.route('/tumour')
 # @login_required
 def tumour():
-    pass
+    return render_template('tumour_form.html')
 
+@bp.route('/treatment')
 # @login_required
 def treatment():
-    pass
+    return render_template('treatment.html')
 
+@bp.route('/source')
 # @login_required
 def source():
-    pass
+    return render_template('source_info.html')
 
+@bp.route('/follow_up')
 # @login_required
 def follow_up():
-    pass
+    return render_template('followup.html')
 
+@bp.route('/view_records')
 # @login_required
 def view_records():
-    pass
+    return render_template('index.html')

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}
+Cancer Burden Research Project
+{% endblock %}
+{% block header %}
+<h1>
+    Cancer Screening Database Lesotho
+</h1>
+<h2>Tumour Markers</h2>
+{% endblock %}
+{% block content %}
+<form action="" method="post" class="tumour__markers--form">
+    <div class="form--div"><label for="incidence__date">Date of incidence</label><input type="datetime-local" class="input" pattern="\d{2}/\d{2}/\d{4}" min="1/1/2010" required id="incidence__date" name="incidence__date"></div>
+    <div class="form--div">
+        <label for="diagnosis">Basis of Diagnosis</label>
+        <select class="input">
+            <option value="">Death Certificate Only</option>
+            <option value="">Clinical Only</option>
+            <option value="">Clinical Investigation(x-ray, endoscopy, mri, ct/ur scan)</option>
+            <option value="">Specific Tumour Markers</option>
+            <option value="">Cytology/Haematology</option>
+            <option value="">Histology of Metastatis</option>
+            <option value="">histology of Primary</option>
+            <option value="">Unknown</option>
+        </select>
+    </div>
+    <div class="form--div">
+        <label for="">Primary Site of Tumour / Topography</label>
+        <select name="" id="" class="input">
+            <option value=""></option>
+        </select>
+    </div>
+    <div class="form--div">
+        <label for="">Morphology</label>
+        <select name="" id="" class="input">
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+        </select>
+    </div>
+    <div class="form--div">
+        <label for="">Laterality</label>
+        <select name="" id="" class="input">
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+        </select>
+    </div>
+    <div class="form--div">
+        <label for="">Stage</label>
+        <input type="text" class="input" name="">
+        <label for="">T</label><input type="checkbox" name="" id="">
+        <label for="">N</label><input type="checkbox" name="" id="">
+        <label for="">M</label><input type="checkbox" name="" id="">
+    </div>
+    <input type="submit" value="Next">
+</form>
+{% endblock %}

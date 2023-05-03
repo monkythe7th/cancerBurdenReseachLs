@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}
+Cancer Burden Research Project
+{% endblock %}
+{% block header %}
+<h1>
+    Cancer Screening Database Lesotho
+</h1>
+<h2>Follow up</h2>
+{% endblock %}
+{% block content %}
+<form action="" method="post" class="form follow__up--form">
+    <div class="form--div"><label for="">Date of Last Contact</label><input type="date" name="" id=""></div>
+    <div class="form--div">
+        <p>Status of last contact</p>
+        <label for="state__of__last__contact">Alive</label><input type="radio" name="state__of__last__contact" id="">
+        <label for="state__of__last__contact">Dead</label><input type="radio" name="state__of__last__contact" id="">
+        <label for="state__of__last__contact">Unknown</label><input type="radio" name="state__of__last__contact" id="">
+    </div>
+    <div class="form--div" id="cause__of__death"><label for="">Cause of Death</label><input type="text" name="" id=""></div>
+    <div class="form--div"><label for="">Reffered from</label><input type="text" name="" id=""></div>
+    <div class="form--div"><label for="">Referral No:</label><input type="text" name="" id=""></div>
+    <div class="form--div"><label for="">Reffered To</label><input type="text" name="" id=""></div>
+    <div class="form--div"><label for="">Referral No:</label><input type="text" name="" id=""></div>
+    <input type="submit" value="">
+</form>
+{% endblock %}

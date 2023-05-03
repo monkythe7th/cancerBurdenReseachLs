@@ -12,15 +12,21 @@ header {
     text-align: center;
 }
 
-.auth--form {
+.form.auth--form {
     width: 60%;
     height: 60%;
     margin: auto;
 }
 
+.form--div {
+    margin: 15px 5px;
+    display: inline-flex;
+}
+
 .form {
-    width: 75%;
+    width: 85%;
     margin: auto;
+    /* text-align: center; */
 }
 
 .input, select {
@@ -32,4 +38,16 @@ header {
 .input.screening--input[type="radio"],
 .input[type='checkbox'] {
     width: 50px;
+}
+
+.form--div label {
+    width: 140px;
+}
+
+.form--div .previous__screening {
+    display: none;
+}
+
+.form--div .previous__screening--h4 {
+    width: 200px;
 }
