@@ -49,14 +49,36 @@ class PatientDAO:
             pass
 
     def tumour(form_data):
+        incidence_date = form_data['']
+        basis_of_diagnosis = form_data['']
+        topography = form_data['']
+        morphology = form_data['']
+        laterlity = form_data['']
+        stage = form_data['']
+
         pass
 
     def treatment(form_data):
+        treatment_type = form_data['']
+        treatment_date = form_data['']
         pass
 
     def source(form_data):
+        institution = form_data['']
+        ward = form_data['']
+        case_no = form_data['']
+        date_of_source = form_data['']
+        laboratory = form_data['']
+        lab_no = form_data['']
         pass
 
     def follow_up(form_data):
+        date_of_last_contact = form_data['']
+        state_of_last_contact = form_data['']
+        cause_of_death = form_data['']
+        refered_from = form_data['']
+        ref_no1 = form_data['']
+        refered_to = form_data['']
+        ref_no2 = form_data['']
         pass
 

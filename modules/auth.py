@@ -13,13 +13,25 @@ def login_required(view):
         return view(**kwargs)
     return wrapped_view
 
+def admin_only(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user_type is not 'admin':
+            return redirect(url_for('index'))
+        return view(**kwargs)
+    return wrapped_view
+
 @bp.route('/login', methods=['POST','GET'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
         error = None
-        user = {}
+        user = {
+            # 'username':'',
+            # 'password': '',
+            # 'user_type': ''
+        }
         if not user:
             error = "invalid username or password"
             flash(error)
@@ -32,6 +44,8 @@ def login():
 @bp.route('/create_user', methods=['POST','GET'])
 @login_required
 def create_user():
+    if request.method == 'POST':
+        pass
     return render_template('auth.html')
 
 @bp.route('/logout')
