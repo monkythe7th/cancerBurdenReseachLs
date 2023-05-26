@@ -10,23 +10,23 @@ Cancer Burden Research Project
 {% endblock %}
 {% block content %}
 <form action="" method="post" class="demographic--form form">
-    <div class="form--div"><label for="date">Date: </label><input type="datetime-local" name="date" id="todays__date" pattern="\d{2}/\d{2}/\d{4}" min="1/1/2010" required  class="input"></div>
-    <div class="form--div"><label for="firstname">Name: </label><input type="text" name="firstname" id="firstname" class="input"></div>
-    <div class="form--div"><label for="surname">Surname: </label><input type="text" name="surname" id="surname" class="input"></div>
+    <div class="form--div"><label for="date">Date: </label><input required type="datetime-local" name="date" id="todays__date" pattern="\d{2}/\d{2}/\d{4}" min="1/1/2010" required  class="input"></div>
+    <div class="form--div"><label for="firstname">Name: </label><input required type="text" name="firstname" id="firstname" class="input"></div>
+    <div class="form--div"><label for="surname">Surname: </label><input required type="text" name="surname" id="surname" class="input"></div>
     <div class="form--div"><label for="gender">Gender: </label><select name="gender" id="gender" class="input">
         <option value="default">Select One Option</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
     </select></div>
-    <div class="form--div"><label for="facility__identification__number">Facility Identification Number :</label><input type="text"
+    <div class="form--div"><label for="facility__identification__number">Facility Identification Number :</label><input required type="text"
         name="facility__identification__number" id="facility__identification__number" class="input"></div>
-    <div class="form--div"><label for="national__identification__number">National Identification Number :</label><input type="number"
+    <div class="form--div"><label for="national__identification__number">National Identification Number :</label><input required type="number"
         name="national__identification__number" id="national__identification__number" minlength="12" class="input"></div>
-    <div class="form--div"><label for="dob">Date Of Birth :</label><input type="date" name="dob" id="dob" pattern="\d{2}/\d{2}/\d{4}" required class="input"></div>
-    <div class="form--div"><label for="age">Age :</label><input type="number" name="age" id="age" min="0" class="input"></div>
-    <div class="form--div"><label for="physical__address">Physical address: </label><input type="text" name="physical__address"
+    <div class="form--div"><label for="dob">Date Of Birth :</label><input required type="date" name="dob" id="dob" pattern="\d{2}/\d{2}/\d{4}" required class="input"></div>
+    <div class="form--div"><label for="age">Age :</label><input required type="number" name="age" id="age" min="0" class="input"></div>
+    <div class="form--div"><label for="physical__address">Physical address: </label><input required type="text" name="physical__address"
         id="physical__address" class="input"></div>
-    <div class="form--div"><label for="phone">Phone: </label><input type="tel" name="phone" id="phone" pattern="[0-9]{4} [0-9]{4}" class="input"></div>
+    <div class="form--div"><label for="phone">Phone: </label><input required type="tel" name="phone" id="phone" pattern="[0-9]{4} [0-9]{4}" class="input" placehonder="5912 3456"></div>
     <div class="form--div"><label for="level__of__education">Level of Education: </label><select name="level__of__education"
         id="level__of__education" class="input">
         <option value="default">Select One Option</option>
@@ -38,13 +38,13 @@ Cancer Burden Research Project
         <option value="degree">Degree</option>
         <option value="other"></option>
     </select></div>
-    <div class="form--div"><label for="occupation">Occupation: </label><input type="text" name="occupation" id="occupation" class="input"></div>
-    <div class="form--div"><label for="marital__status">Marital Status: </label><input type="text" name="marital__status" id="marital__status" class="input"></div>
-    <div class="form--div"><label for="religion">Religion: </label><input type="text" name="religion" id="religion" class="input"></div>
-    <div class="form--div"><label for="number__of__children">Number of Children: </label><input type="text" name="number__of__children"
+    <div class="form--div"><label for="occupation">Occupation: </label><input required type="text" name="occupation" id="occupation" class="input"></div>
+    <div class="form--div"><label for="marital__status">Marital Status: </label><input required type="text" name="marital__status" id="marital__status" class="input"></div>
+    <div class="form--div"><label for="religion">Religion: </label><input required type="text" name="religion" id="religion" class="input"></div>
+    <div class="form--div"><label for="number__of__children">Number of Children: </label><input required type="text" name="number__of__children"
         id="number__of__children" class="input"></div>
-    <div class="form--div"><label for="nok">Next of Kin Name: </label><input type="text" name="nok" id="nok" class="input"></div>
-    <div class="form--div"><label for="nok__phone">Next of Kin Phone number: </label><input type="tel" name="nok__phone" id="nok__phone" pattern="[0-9]{4} [0-9]{4}" class="input"></div>
+    <div class="form--div"><label for="nok">Next of Kin Name: </label><input required type="text" name="nok" id="nok" class="input"></div>
+    <div class="form--div"><label for="nok__phone">Next of Kin Phone number: </label><input required type="tel" name="nok__phone" id="nok__phone" pattern="[0-9]{4} [0-9]{4}" class="input" placehonder="5912 3456"></div>
     <input type="submit" value="Next">
 </form>
 

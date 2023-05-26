@@ -43,6 +43,7 @@ def login():
 
 @bp.route('/create_user', methods=['POST','GET'])
 @login_required
+@admin_only
 def create_user():
     if request.method == 'POST':
         pass

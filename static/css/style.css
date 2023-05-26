@@ -8,8 +8,9 @@ body {
 }
 
 header {
-    height: 100px;
+    height: 75px;
     text-align: center;
+    padding: 25px;
 }
 
 .form.auth--form {
@@ -50,4 +51,19 @@ header {
 
 .form--div .previous__screening--h4 {
     width: 200px;
+}
+
+.button--opts {
+    width: 300px;
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 25px;
+}
+
+input[type="submit"] {
+    width: 200px;
+    padding: 7.5px;
+    margin: 25px 100px;
 }

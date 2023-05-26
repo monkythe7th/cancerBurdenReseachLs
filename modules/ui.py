@@ -2,7 +2,7 @@ from flask import Flask, Blueprint, render_template, request, redirect, url_for,
 from .patientDAO import *
 from .auth import *
 
-bp = Blueprint('ui',__name__,url_prefix='/form')
+bp = Blueprint('ui',__name__,url_prefix='/ui')
 
 @bp.route('/', methods=['POST','GET'])
 # @login_required
@@ -21,7 +21,7 @@ def screening():
         try:
             PatientDAO.screening(request.form)
         finally:
-            return redirect(url_for('ui.tumour'))
+            return redirect(url_for('ui.review',name='screening'))
     return render_template('screening.html')
         
 @bp.route('/tumour', methods=['POST','GET'])
@@ -61,15 +61,25 @@ def follow_up():
         try :
             PatientDAO.follow_up(request.form)
         finally:
-            return redirect(url_for('ui.view_records'))
+            return redirect(url_for('ui.review',name='all'))
     return render_template('followup.html')
 
 @bp.route('/view_records')
 # @login_required
 def view_records():
-    return render_template('index.html')
+    records = {9,6,3}
+    return render_template('get_all.html',records=records)
 
-@bp.route('/update')
+@bp.route('/update/<form>')
 # @login_required
-def update_record():
+def update_record(form):
     pass
+
+@bp.route('/review/<name>')
+# @login_required
+def review(name):
+    if name == 'screening':
+        pass
+    elif name == 'all':
+        pass
+    return render_template('get_one.html')
