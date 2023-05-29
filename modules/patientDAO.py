@@ -1,10 +1,19 @@
+from mysql import connector
+from modules import sqlQueries
+import yaml
 
 class PatientDAO:
 
+    
 
     def patient_demographic(form_data):
+
+        db = yaml.load(open('db.yaml'), Loader= yaml.FullLoader)
+        #congfigure db
+        conn = connector.connect( host = db['mysql_host'], user = db['mysql_user'], password = db['mysql_password'], database = db['mysql_db'])
+
         today = form_data['date']
-        fistname = form_data['firstname']
+        firstname = form_data['firstname']
         surname = form_data['surname']
         gender = form_data['gender']
         facility_id = form_data['facility__identification__number']
@@ -20,10 +29,17 @@ class PatientDAO:
         no_of_children = form_data['number__of__children']
         next_of_kin = form_data['nok']
         Next_of_kin_phone = form_data['nok__phone']
+
+        data = (today,firstname,surname,gender,facility_id,national_id,dob,age,physical_address,phone,level_of_education,occupation,marital_status,religion,next_of_kin,Next_of_kin_phone)    
+        cur = conn.cursor()
+
         try:
-            pass
+            cur.excercute(sqlQueries.Patient_Info_Sql(),data)
+            conn.commit()
         except:
-            return
+            conn.rollback()
+        conn.close()
+        
 
     def screening(form_data):
         # previous screening

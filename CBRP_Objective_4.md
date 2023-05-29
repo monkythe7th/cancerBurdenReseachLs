@@ -22,10 +22,36 @@ To build a fully integrated system that digitises patient screening records and 
 ---
 
 ## Solution
-### usecase diagram
 
-![width:200px height:200px](image/CBRP.png)
+**Systems**
+- DHIS2
+- CanReg5
+- eRegister
+
+not compatable with each other
 
 ---
 
+## Solution
+### usecase diagram
+
+![width:521px height:361px ](CBRP.png)
+
+---
+
+## Demonstration
+
+- add record
+- view records
+
 ![](image)
+
+---
+
+Access can be given by administrator for reviewer and registrar
+
+---
+## conclusion
+
+**ToDo:**
+- 
