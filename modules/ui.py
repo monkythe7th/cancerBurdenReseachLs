@@ -67,7 +67,7 @@ def follow_up():
 @bp.route('/view_records')
 # @login_required
 def view_records():
-    records = {9,6,3}
+    records = PatientDAO.get_records()
     return render_template('get_all.html',records=records)
 
 @bp.route('/update/<form>')
@@ -78,8 +78,14 @@ def update_record(form):
 @bp.route('/review/<name>')
 # @login_required
 def review(name):
-    if name == 'screening':
+    patient = ''
+    try:
+        if name == 'screening':
+            patient = PatientDAO.get_one_record()
+        elif name == 'all':
+            pass
+    except:
         pass
-    elif name == 'all':
-        pass
+    finally:
+        return patient
     return render_template('get_one.html')

@@ -1,6 +1,6 @@
 from mysql import connector
-from modules import sqlQueries
-import yaml
+from ..modules import sqlQueries
+from ..modules.db_conn import Connection
 
 class PatientDAO:
 
@@ -8,9 +8,8 @@ class PatientDAO:
 
     def patient_demographic(form_data):
 
-        db = yaml.load(open('db.yaml'), Loader= yaml.FullLoader)
         #congfigure db
-        conn = connector.connect( host = db['mysql_host'], user = db['mysql_user'], password = db['mysql_password'], database = db['mysql_db'])
+        conn = Connection()
 
         today = form_data['date']
         firstname = form_data['firstname']
@@ -38,7 +37,6 @@ class PatientDAO:
             conn.commit()
         except:
             conn.rollback()
-        conn.close()
         
 
     def screening(form_data):
@@ -98,3 +96,11 @@ class PatientDAO:
         ref_no2 = form_data['']
         pass
 
+    def get_records():
+        pass
+
+    def get_one_record():
+        cur = Connection().cursor()
+        cur.execute("select * from patient_information")
+
+        return cur.fetchone()

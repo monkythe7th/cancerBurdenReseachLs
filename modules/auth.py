@@ -16,7 +16,7 @@ def login_required(view):
 def admin_only(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-        if g.user_type is not 'admin':
+        if g.user_type != 'admin':
             return redirect(url_for('index'))
         return view(**kwargs)
     return wrapped_view
