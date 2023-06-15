@@ -8,6 +8,22 @@ Cancer Burden Research Project
 </h1>
 <h2>Screening Review</h2>
 {% endblock %}
+{% block sidebar %}
+<div class="sidebar">
+    <ul class="breadcrumbs">
+        <li><a href="{{ url_for('index') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('ui.patient_demographic') }}">Patient info</a></li>
+        <li><a href="{{ url_for('ui.screening') }}">Screening</a></li>
+        <li><a href="{{ url_for('ui.tumour') }}">tumour markers</a></li>
+        <li><a href="{{ url_for('ui.treatment') }}">treatment</a></li>
+        <li><a href="{{ url_for('ui.source') }}">source of info</a></li>
+        <li><a href="{{ url_for('ui.follow_up') }}">follow up</a></li>
+        <li class="active"><a href="#">review</a></li>
+    </ul>
+</div>
+{% endblock %}
 {% block content %}
-{{ patient }}
+<section class="ui">
+    {{ patient }}
+</section>
 {% endblock %}

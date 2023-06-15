@@ -1,6 +1,5 @@
 ---
 marp: true
-title: crbp
 ---
 
 # Cancer Burden Research Project
@@ -54,4 +53,6 @@ Access can be given by administrator for reviewer and registrar
 ## conclusion
 
 **ToDo:**
+- update record
+- delete record
 - 

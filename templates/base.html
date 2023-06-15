@@ -13,7 +13,10 @@
 <header class="header clear" id="header">
 {% block header %}{% endblock %}
 </header>
-<main class="main clear" id="main">{% block content %}{% endblock %}</main>
+<main class="main clear" id="main">
+    {% block sidebar %}{% endblock %}
+    {% block content %}{% endblock %}
+</main>
 <footer class="footer" id="footer">
 </footer>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

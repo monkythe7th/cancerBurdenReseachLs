@@ -8,14 +8,30 @@ Cancer Burden Research Project
 </h1>
 <h2>Source of Information</h2>
 {% endblock %}
+{% block sidebar %}
+<div class="sidebar">
+    <ul class="breadcrumbs">
+        <li><a href="{{ url_for('index') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('ui.patient_demographic') }}">Patient info</a></li>
+        <li><a href="{{ url_for('ui.screening') }}">Screening</a></li>
+        <li><a href="{{ url_for('ui.tumour') }}">tumour markers</a></li>
+        <li><a href="{{ url_for('ui.treatment') }}">treatment</a></li>
+        <li class="active"><a href="{{ url_for('ui.source') }}">source of info</a></li>
+        <li><a href="{{ url_for('ui.follow_up') }}">follow up</a></li>
+        <li><a href="{{ url_for('ui.review',name='all') }}">review</a></li>
+    </ul>
+</div>
+{% endblock %}
 {% block content %}
-<form action="" method="post" class="form info__source--form">
-    <div class="form--div"><label for="">Institution / Hospital</label><input type="text" name="" id=""></div>
-    <div class="form--div"><label for="">Unit / Ward</label><input type="text" name="" id=""></div>
-    <div class="form--div"><label for="">Case Number</label><input type="text" name="" id=""></div>
-    <div class="form--div"><label for="">Date of Source</label><input type="date" name="" id=""></div>
-    <div class="form--div"><label for="">Laboratory</label><input type="text" name="" id=""></div>
-    <div class="form--div"><label for="">Lab Number</label><input type="text" name="" id=""></div>
-    <input type="submit" value="Next">
-</form>
+<section class="ui">
+    <form action="" method="post" class="form info__source--form">
+        <div class="form--div"><label for="">Institution / Hospital</label><input type="text" name="" id="" class="input"></div>
+        <div class="form--div"><label for="">Unit / Ward</label><input type="text" name="" id="" class="input"></div>
+        <div class="form--div"><label for="">Case Number</label><input type="text" name="" id="" class="input"></div>
+        <div class="form--div"><label for="">Date of Source</label><input type="date" name="" id="" class="input"></div>
+        <div class="form--div"><label for="">Laboratory</label><input type="text" name="" id="" class="input"></div>
+        <div class="form--div"><label for="">Lab Number</label><input type="text" name="" id="" class="input"></div>
+        <input type="submit" value="Next">
+    </form>
+</section>
 {% endblock %}

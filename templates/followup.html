@@ -8,20 +8,36 @@ Cancer Burden Research Project
 </h1>
 <h2>Follow up</h2>
 {% endblock %}
+{% block sidebar %}
+<div class="sidebar">
+    <ul class="breadcrumbs">
+        <li><a href="{{ url_for('index') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('ui.patient_demographic') }}">Patient info</a></li>
+        <li><a href="{{ url_for('ui.screening') }}">Screening</a></li>
+        <li><a href="{{ url_for('ui.tumour') }}">tumour markers</a></li>
+        <li><a href="{{ url_for('ui.treatment') }}">treatment</a></li>
+        <li><a href="{{ url_for('ui.source') }}">source of info</a></li>
+        <li class="active"><a href="{{ url_for('ui.follow_up') }}">follow up</a></li>
+        <li><a href="{{ url_for('ui.review',name='all') }}">review</a></li>
+    </ul>
+</div>
+{% endblock %}
 {% block content %}
-<form action="" method="post" class="form follow__up--form">
-    <div class="form--div"><label for="">Date of Last Contact</label><input type="date" name="" id=""></div>
-    <div class="form--div">
-        <p>Status of last contact</p>
-        <label for="state__of__last__contact">Alive</label><input type="radio" name="state__of__last__contact" id="">
-        <label for="state__of__last__contact">Dead</label><input type="radio" name="state__of__last__contact" id="">
-        <label for="state__of__last__contact">Unknown</label><input type="radio" name="state__of__last__contact" id="">
-    </div>
-    <div class="form--div" id="cause__of__death"><label for="">Cause of Death</label><input type="text" name="" id=""></div>
-    <div class="form--div"><label for="">Reffered from</label><input type="text" name="" id=""></div>
-    <div class="form--div"><label for="">Referral No:</label><input type="text" name="" id=""></div>
-    <div class="form--div"><label for="">Reffered To</label><input type="text" name="" id=""></div>
-    <div class="form--div"><label for="">Referral No:</label><input type="text" name="" id=""></div>
-    <input type="submit" value="">
-</form>
+<section class="ui">
+    <form action="" method="post" class="form follow__up--form">
+        <div class="form--div"><label for="">Date of Last Contact</label><input class="input" type="date" name="" id=""></div>
+        <div class="form--div">
+            <p>Status of last contact</p>
+            <label class="radio__check--label" for="state__of__last__contact">Alive</label><input type="radio" name="state__of__last__contact" id="">
+            <label class="radio__check--label" for="state__of__last__contact">Dead</label><input type="radio" name="state__of__last__contact" id="">
+            <label class="radio__check--label" for="state__of__last__contact">Unknown</label><input type="radio" name="state__of__last__contact" id="">
+        </div>
+        <div class="form--div" id="cause__of__death"><label for="">Cause of Death</label><input class="input" type="text" name="" id=""></div>
+        <div class="form--div"><label for="">Reffered from</label><input class="input" type="text" name="" id=""></div>
+        <div class="form--div"><label for="">Referral No:</label><input class="input" type="text" name="" id=""></div>
+        <div class="form--div"><label for="">Reffered To</label><input class="input" type="text" name="" id=""></div>
+        <div class="form--div"><label for="">Referral No:</label><input class="input" type="text" name="" id=""></div>
+        <input type="submit" value="Submit">
+    </form>
+</section>
 {% endblock %}

@@ -8,108 +8,125 @@ Cancer Burden Research Project
 </h1>
 <h2>Screening</h2>
 {% endblock %}
+{% block sidebar %}
+<div class="sidebar">
+    <ul class="breadcrumbs">
+        <li><a href="{{ url_for('index') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('ui.patient_demographic') }}">Patient info</a></li>
+        <li class="active"><a href="{{ url_for('ui.screening') }}">Screening</a></li>
+        <li><a href="{{ url_for('ui.tumour') }}">tumour markers</a></li>
+        <li><a href="{{ url_for('ui.treatment') }}">treatment</a></li>
+        <li><a href="{{ url_for('ui.source') }}">source of info</a></li>
+        <li><a href="{{ url_for('ui.follow_up') }}">follow up</a></li>
+        <li><a href="{{ url_for('ui.review',name='screening') }}">review</a></li>
+    </ul>
+</div>
+{% endblock %}
 {% block content %}
-<form action="" method="post" class="form screening--form" id="screening--form">
-    <div class="form--div">
-        <h4 class="previous__screening--h4">Previous Screening</h4>
-        <label for="yes">Yes</label><input type="radio" name="previous__screening" id="previous__screening--yes" class="input screening--input previous__screening--radio" onclick="toggleDisabled(true)">
-        <label for="no">No</label><input type="radio" name="previous__screening" id="previous__screening--no" class="input screening--input previous__screening--radio" onclick="toggleDisabled(false)">
-        <select name="previous__screening__type" id="previous__screening--dropdown" class="previous__screening">
-            <option value="default">Select One Option</option>
-            <option value="cervical">Cervical</option>
-            <option value="prostate">Prostate</option>
-            <option value="breast">Breast</option>
-            <option value="lung">Lung</option>
-            <option value="liver">Liver</option>
-        </select>
-        <label for="" class="previous__screening">treatment</label><input type="text" name="previous__treatment" id="previous__treatment" class="input screening--input previous__screening" >
-        <label for="" class="previous__screening">Date Results</label><input type="date" name="previous__result--date" id="previous__result--date" class="input screening--input previous__screening" >
-    </div>
-    <div class="form--div">
-        <label for="refering__facility">Refering Facility</label><input type="text" name="refering__facility" id="refering__facility" class="input screening--input refering__facility">
-    </div>
-    <div class="form--div">
-        <label for="family__planning">Family Planning Methods</label><select name="family__planning" id="family__planning" class="input screening--input family__planning">
-            <option value="default">Select One Option</option>
-            <option value="iud">IUD</option>
-            <option value="condom">Condom</option>
-            <option value="mini_pill">Mini Pills</option>
-            <option value="tubal_ligation">Tubal ligation</option>
-            <option value="combo_pills">Combined Pills</option>
-            <option value="injection">Injection</option>
-            <option value="cvr">CVR</option>
-            <option value="vasectomy">Vasectomy</option>
-            <option value="lam">LAM</option>
-            <option value="standard_days">Standard Days</option>
-            <option value="basal_body_temperature">Basal Body Temperature</option>
-            <option value="two_day">Two Day</option>
-            <option value="sympto-thermal">Sympto-thermal</option>
-            <option value="emergency_pills">Emergency Pills</option>
-            <option value="withdrawal">Withdrawal</option>
-        </select>
-    </div>
-    <div class="form--div">
-        <label for="hts__offered">HTS Offered</label><input type="text" name="hts__offered" id="hts__offered" class="input screening--input ">
-    </div>
-    <div class="form--div">
-        <label for="hiv__results">HIV Status</label><select name="hiv__results" id="hiv__results" class="input screening--input ">
-            <option value="default">Select One Option</option>
-            <option value="positive_on_art">Positive on ART</option>
-            <option value="positive_not_on_art">Positive not on ART</option>
-            <option value="negative">Negative</option>
-            <option value="unknown">Unknown</option>
-        </select>
-    </div>
-    <div class="form--div">
-        <label for="purpose__visit">Purpose of Visit</label><input type="text" name="purpose__visit" id="purpose__visit" class="input screening--input ">
-    </div>
-    <div class="form--div">
-        <label for="screening__type">Type of Screening</label><input type="text" name="screening__type" id="screening__type" class="input screening--input ">
-    </div>
-    <div class="form--div">
-        <label for="screening__methods">Method of Screening</label><select name="screening__methods" id="screening__methods" class="input screening--input ">
-            <option value="default">Select OneOption</option>
-            <option value="mamogram">Mamogram</option>
-            <option value="hpv">HPV Test</option>
-        <option value="pap_smear">Pap Smear</option>
-        <option value="colonoscopy">Colonoscopy</option>
-        <option value="sigmoidoscopy">Sigmoidoscopy</option>
-        <option value="ct_scan">CT scan</option>
-        <option value="mri">MRI</option>
-        <option value="ultrasound">Ultrasound</option>
-        <option value="mcd">MCD</option>
-        <option value="psa">PSA</option>
-    </select>
-    </div>
-    <div class="form--div">
-        <label for="screening__results">Screening Results</label><textarea name="screening__results" id="screening__results" class="input screening--input "></textarea>
-        <label for="positive">Positive</label><input type="radio" name="results" id="" class="input screening--input ">
-        <label for="negative">Negative</label><input type="radio" name="results" id="" class="input screening--input ">
-    </div>
-    <div class="form--div">
-        <p>Management and Treatment</p>
-        <div class="management__and__treatment--options">
-            <label for="thermo_coagulation">Thermo-coagulation</label><input type="checkbox" name="thermo_coagulation" id="thermo_coagulation" class="input screening--input ">
+<section class="ui">
+    <form action="" method="post" class="form screening--form" id="screening--form">
+        <div class="form--div">
+            <h4 class="previous__screening--h4">Previous Screening</h4>
+            <label class="radio__check--label" for="yes">Yes</label><input type="radio" name="previous__screening" id="previous__screening--yes" class="input screening--input previous__screening--radio" onclick="toggleDisabled(true)">
+            <label class="radio__check--label" for="no">No</label><input type="radio" name="previous__screening" id="previous__screening--no" class="input screening--input previous__screening--radio" onclick="toggleDisabled(false)">
+            <select name="previous__screening__type" id="previous__screening--dropdown" class="previous__screening">
+                <option value="default">Select One Option</option>
+                <option value="cervical">Cervical</option>
+                <option value="prostate">Prostate</option>
+                <option value="breast">Breast</option>
+                <option value="lung">Lung</option>
+                <option value="liver">Liver</option>
+            </select>
+            <label for="" class="previous__screening">treatment</label><input type="text" name="previous__treatment" id="previous__treatment" class="input screening--input previous__screening" >
+            <label for="" class="previous__screening">Date Results</label><input type="date" name="previous__result--date" id="previous__result--date" class="input screening--input previous__screening" >
         </div>
-        <div class="management__and__treatment--options">
-            <label for="cryotherapy">Cryotherapy</label><input type="checkbox" name="cryotherapy" id="cryotherapy" class="input screening--input ">
+        <div class="form--div">
+            <label for="refering__facility">Refering Facility</label><input type="text" name="refering__facility" id="refering__facility" class="input screening--input refering__facility">
         </div>
-        <div class="management__and__treatment--options">
-            <label for="leep">LEEP</label><input type="checkbox" name="leep" id="leep" class="input screening--input ">
+        <div class="form--div">
+            <label for="family__planning">Family Planning Methods</label><select name="family__planning" id="family__planning" class="input screening--input family__planning">
+                <option value="default">Select One Option</option>
+                <option value="iud">IUD</option>
+                <option value="condom">Condom</option>
+                <option value="mini_pill">Mini Pills</option>
+                <option value="tubal_ligation">Tubal ligation</option>
+                <option value="combo_pills">Combined Pills</option>
+                <option value="injection">Injection</option>
+                <option value="cvr">CVR</option>
+                <option value="vasectomy">Vasectomy</option>
+                <option value="lam">LAM</option>
+                <option value="standard_days">Standard Days</option>
+                <option value="basal_body_temperature">Basal Body Temperature</option>
+                <option value="two_day">Two Day</option>
+                <option value="sympto-thermal">Sympto-thermal</option>
+                <option value="emergency_pills">Emergency Pills</option>
+                <option value="withdrawal">Withdrawal</option>
+            </select>
         </div>
-        <div class="management__and__treatment--options">
-            <label for="boipsy__referal">Refered for Biopsy</label><input type="checkbox" name="boipsy__referal" id="boipsy__referal" class="input screening--input ">
+        <div class="form--div">
+            <label for="hts__offered">HTS Offered</label><input type="text" name="hts__offered" id="hts__offered" class="input screening--input ">
         </div>
-        <div class="management__and__treatment--options">
-            <label for="treatment__referal">Refered for Treatment</label><input type="checkbox" name="treatment__referal" id="treatment__referal" class="input screening--input ">
+        <div class="form--div">
+            <label for="hiv__results">HIV Status</label><select name="hiv__results" id="hiv__results" class="input screening--input ">
+                <option value="default">Select One Option</option>
+                <option value="positive_on_art">Positive on ART</option>
+                <option value="positive_not_on_art">Positive not on ART</option>
+                <option value="negative">Negative</option>
+                <option value="unknown">Unknown</option>
+            </select>
         </div>
-    </div>
-    <div class="form--div">
-        <label for="next__visit">Next Visit</label><input type="date" name="next__visit" id="next__visit" class="input screening--input ">
-    </div>
-    <div class="form--div">
-        <label for="comments">Comments</label><textarea name="comments" id="comments" class="input screening--input "></textarea>
-    </div>
-    <input type="submit" value="Next">
-</form>
+        <div class="form--div">
+            <label for="purpose__visit">Purpose of Visit</label><input type="text" name="purpose__visit" id="purpose__visit" class="input screening--input ">
+        </div>
+        <div class="form--div">
+            <label for="screening__type">Type of Screening</label><input type="text" name="screening__type" id="screening__type" class="input screening--input ">
+        </div>
+        <div class="form--div">
+            <label for="screening__methods">Method of Screening</label><select name="screening__methods" id="screening__methods" class="input screening--input ">
+                <option value="default">Select OneOption</option>
+                <option value="mamogram">Mamogram</option>
+                <option value="hpv">HPV Test</option>
+                <option value="pap_smear">Pap Smear</option>
+                <option value="colonoscopy">Colonoscopy</option>
+                <option value="sigmoidoscopy">Sigmoidoscopy</option>
+                <option value="ct_scan">CT scan</option>
+                <option value="mri">MRI</option>
+                <option value="ultrasound">Ultrasound</option>
+                <option value="mcd">MCD</option>
+                <option value="psa">PSA</option>
+            </select>
+        </div>
+        <div class="form--div full__width screening__results--div">
+            <label for="screening__results">Screening Results</label>
+            <textarea name="screening__results" id="screening__results" class="input screening--input "></textarea>
+            <label class="radio__check--label" for="positive">Positive</label><input type="radio" name="results" id="" class="input screening--input ">
+            <label class="radio__check--label" for="negative">Negative</label><input type="radio" name="results" id="" class="input screening--input ">
+        </div>
+        <div class="form--div full__width">
+            <p>Management and Treatment</p>
+            <div class="management__and__treatment--options">
+                <label class="radio__check--label" for="thermo_coagulation">Thermo-coagulation</label><input type="checkbox" name="thermo_coagulation" id="thermo_coagulation" class="input screening--input ">
+            </div>
+            <div class="management__and__treatment--options">
+                <label class="radio__check--label" for="cryotherapy">Cryotherapy</label><input type="checkbox" name="cryotherapy" id="cryotherapy" class="input screening--input ">
+            </div>
+            <div class="management__and__treatment--options">
+                <label class="radio__check--label" for="leep">LEEP</label><input type="checkbox" name="leep" id="leep" class="input screening--input ">
+            </div>
+            <div class="management__and__treatment--options">
+                <label class="radio__check--label" for="boipsy__referal">Refered for Biopsy</label><input type="checkbox" name="boipsy__referal" id="boipsy__referal" class="input screening--input ">
+            </div>
+            <div class="management__and__treatment--options">
+                <label class="radio__check--label" for="treatment__referal">Refered for Treatment</label><input type="checkbox" name="treatment__referal" id="treatment__referal" class="input screening--input ">
+            </div>
+        </div>
+        <div class="form--div">
+            <label for="next__visit">Next Visit</label><input type="date" name="next__visit" id="next__visit" class="input screening--input ">
+        </div>
+        <div class="form--div">
+            <label for="comments">Comments</label><textarea name="comments" id="comments" class="input screening--input "></textarea>
+        </div>
+        <input type="submit" value="Next">
+    </form>
+</section>
 {% endblock %}

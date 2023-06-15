@@ -1,16 +1,71 @@
 * {
     margin: 0;
     padding: 0;
+    /* border: 1px dotted red; */
+}
+
+html {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
 }
 
 body {
     font: 18px sans-serif;
+    height: 100%;
+    width: 100%;
+    position: relative;
 }
 
 header {
+    background: floralwhite;
     height: 75px;
-    text-align: center;
     padding: 25px;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 8;
+}
+
+#main {
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar {
+    width: 25%;
+    float: left;
+    position: fixed;
+    top: 125px;
+}
+
+.sidebar .breadcrumbs {
+    margin: 25px auto;
+    list-style: none;
+}
+
+/* .sidebar .breadcrumbs > li {
+} */
+
+.sidebar .breadcrumbs > li.active {
+    font-weight: bold;
+    background-color: pink;
+}
+
+.sidebar .breadcrumbs a {
+    color: #000;
+    display: block;
+    padding: 5px 25px;
+    text-decoration: none;
+}
+
+.ui {
+    border-left: 1px solid #666;
+    height: 100%;
+    margin-left: 25%;
+    overflow: scroll;
+    position: relative;
+    top: 125px;
 }
 
 .form.auth--form {
@@ -20,20 +75,47 @@ header {
 }
 
 .form--div {
+    display: block;
+    float: left;
+    height: 60px;
     margin: 15px 5px;
-    display: inline-flex;
+    width: 48%;
+}
+
+.ui .form--div.full__width {
+    width: 100%;
+}
+
+.ui .form--div.full__width.screening__results--div {
+    height: 90px;
+}
+
+.ui .form--div.full__width textarea {
+    width: 50%;
+    height: 60px;
+}
+
+.ui .form--div.full__width input[type='text'] {
+    width: 50%;
+}
+
+.management__and__treatment--options {
+    display: inline-block;
 }
 
 .form {
-    width: 85%;
-    margin: auto;
+    float: left;
+    margin: 0 50px;
+    width: 90%;
     /* text-align: center; */
 }
 
 .input, select {
-    width: 100%;
+    border: 1px solid;
+    border-radius: 10px;
     margin: 2.5px auto 12.5px;
     padding: 5px;
+    width: 90%;
 }
 
 .input.screening--input[type="radio"],
@@ -42,7 +124,12 @@ header {
 }
 
 .form--div label {
-    width: 140px;
+    display: block;
+}
+
+.form--div label.radio__check--label {
+    display: inline-block;
+    margin: 5px 5px 5px 15px;
 }
 
 .form--div .previous__screening {
@@ -63,7 +150,10 @@ header {
 }
 
 input[type="submit"] {
-    width: 200px;
-    padding: 7.5px;
+    background-color: #60c2ff;
+    border: 0;
+    border-radius: 12.5px;
     margin: 25px 100px;
+    padding: 7.5px;
+    width: 200px;
 }

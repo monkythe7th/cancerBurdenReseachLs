@@ -1,12 +1,12 @@
 from flask import Flask, render_template, redirect, url_for, g
 from flask_sqlalchemy import SQLAlchemy
-from .modules import auth, ui
+from .modules import auth, ui, db_conn
 
 def create_app():
     app = Flask(__name__)
-    db = SQLAlchemy()
-    app.config["SQLALCHEMY_DATABASE_URI"] = ''
-
+    # db = SQLAlchemy()
+    app.config.from_object(db_conn.Connection())
+    
     @app.route('/')
     def index():
         # if g.user is None: return redirect(url_for('auth.login'))

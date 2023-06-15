@@ -1,4 +1,4 @@
 mysql_host: 'localhost'
 mysql_user:  'root'
-mysql_password: '#Mph4mz4101'
+mysql_password: 'password'
 mysql_db: 'digital_cancer_registry'

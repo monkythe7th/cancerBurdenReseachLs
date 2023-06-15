@@ -8,59 +8,75 @@ Cancer Burden Research Project
 </h1>
 <h2>Tumour Markers</h2>
 {% endblock %}
+{% block sidebar %}
+<div class="sidebar">
+    <ul class="breadcrumbs">
+        <li><a href="{{ url_for('index') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('ui.patient_demographic') }}">Patient info</a></li>
+        <li><a href="{{ url_for('ui.screening') }}">Screening</a></li>
+        <li class="active"><a href="{{ url_for('ui.tumour') }}">tumour markers</a></li>
+        <li><a href="{{ url_for('ui.treatment') }}">treatment</a></li>
+        <li><a href="{{ url_for('ui.source') }}">source of info</a></li>
+        <li><a href="{{ url_for('ui.follow_up') }}">follow up</a></li>
+        <li><a href="{{ url_for('ui.review',name='screening') }}">review</a></li>
+    </ul>
+</div>
+{% endblock %}
 {% block content %}
-<form action="" method="post" class="tumour__markers--form">
-    <div class="form--div"><label for="incidence__date">Date of incidence</label><input type="datetime-local" class="input" pattern="\d{2}/\d{2}/\d{4}" min="1/1/2010" required id="incidence__date" name="incidence__date"></div>
-    <div class="form--div">
-        <label for="diagnosis">Basis of Diagnosis</label>
-        <select class="input" name="">
-            <option value="">Death Certificate Only</option>
-            <option value="">Clinical Only</option>
-            <option value="">Clinical Investigation(x-ray, endoscopy, mri, ct/ur scan)</option>
-            <option value="">Specific Tumour Markers</option>
-            <option value="">Cytology/Haematology</option>
-            <option value="">Histology of Metastatis</option>
-            <option value="">histology of Primary</option>
-            <option value="">Unknown</option>
-        </select>
-    </div>
-    <div class="form--div">
-        <label for="">Primary Site of Tumour / Topography</label>
-        <select name="" id="" class="input">
-            <option value=""></option>
-        </select>
-    </div>
-    <div class="form--div">
-        <label for="">Morphology</label>
-        <select name="" id="" class="input">
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-        </select>
-    </div>
-    <div class="form--div">
-        <label for="">Laterality</label>
-        <select name="" id="" class="input">
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-        </select>
-    </div>
-    <div class="form--div">
-        <label for="">Stage</label>
-        <input type="text" class="input" name="">
-        <label for="">T</label><input type="checkbox" name="" id="">
-        <label for="">N</label><input type="checkbox" name="" id="">
-        <label for="">M</label><input type="checkbox" name="" id="">
-    </div>
-    <input type="submit" value="Next">
-</form>
+<section class="ui">
+    <form action="" method="post" class="tumour__markers--form form">
+        <div class="form--div"><label for="incidence__date">Date of incidence</label><input type="datetime-local" class="input" pattern="\d{2}/\d{2}/\d{4}" min="1/1/2010" required id="incidence__date" name="incidence__date"></div>
+        <div class="form--div">
+            <label for="diagnosis">Basis of Diagnosis</label>
+            <select class="input" name="">
+                <option value="">Death Certificate Only</option>
+                <option value="">Clinical Only</option>
+                <option value="">Clinical Investigation(x-ray, endoscopy, mri, ct/ur scan)</option>
+                <option value="">Specific Tumour Markers</option>
+                <option value="">Cytology/Haematology</option>
+                <option value="">Histology of Metastatis</option>
+                <option value="">histology of Primary</option>
+                <option value="">Unknown</option>
+            </select>
+        </div>
+        <div class="form--div">
+            <label for="">Primary Site of Tumour / Topography</label>
+            <select name="" id="" class="input">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form--div">
+            <label for="">Morphology</label>
+            <select name="" id="" class="input">
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form--div">
+            <label for="">Laterality</label>
+            <select name="" id="" class="input">
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form--div full__width">
+            <label for="">Stage</label>
+            <input type="text" class="input" name="">
+            <label class="radio__check--label" for="">T</label><input type="checkbox" name="" id="">
+            <label class="radio__check--label" for="">N</label><input type="checkbox" name="" id="">
+            <label class="radio__check--label" for="">M</label><input type="checkbox" name="" id="">
+        </div>
+        <input type="submit" value="Next">
+    </form>
+</section>
 {% endblock %}

@@ -8,17 +8,33 @@ Cancer Burden Research Project
 </h1>
 <h2>Treatment</h2>
 {% endblock %}
+{% block sidebar %}
+<div class="sidebar">
+    <ul class="breadcrumbs">
+        <li><a href="{{ url_for('index') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('ui.patient_demographic') }}">Patient info</a></li>
+        <li><a href="{{ url_for('ui.screening') }}">Screening</a></li>
+        <li><a href="{{ url_for('ui.tumour') }}">tumour markers</a></li>
+        <li class="active"><a href="{{ url_for('ui.treatment') }}">treatment</a></li>
+        <li><a href="{{ url_for('ui.source') }}">source of info</a></li>
+        <li><a href="{{ url_for('ui.follow_up') }}">follow up</a></li>
+        <li><a href="{{ url_for('ui.review',name='all') }}">review</a></li>
+    </ul>
+</div>
+{% endblock %}
 {% block content %}
-<form action="" method="post" class="treatment--form">
-    <div class="form--div">
-        <label for="">Surgery</label><input type="checkbox" name="" id="">
-        <label for="">Radiotherapy</label><input type="checkbox" name="" id="">
-        <label for="">Chemotherapy</label><input type="checkbox" name="" id="">
-        <label for="">Hormonal</label><input type="checkbox" name="" id="">
-        <label for="">Immunotherapy</label><input type="checkbox" name="" id="">
-        <label for="">Other (Specify)</label><input type="text" name="" id="">
-    </div>
-    <div class="form--div"><label for="">Date of treatment</label><input type="date" name="" id=""></div>
-    <input type="submit" value="Next">
-</form>
+<section class="ui">
+    <form action="" method="post" class="treatment--form form">
+        <div class="form--div full__width">
+            <label class="radio__check--label" for="">Surgery</label><input type="checkbox" name="" id="">
+            <label class="radio__check--label" for="">Radiotherapy</label><input type="checkbox" name="" id="">
+            <label class="radio__check--label" for="">Chemotherapy</label><input type="checkbox" name="" id="">
+            <label class="radio__check--label" for="">Hormonal</label><input type="checkbox" name="" id="">
+            <label class="radio__check--label" for="">Immunotherapy</label><input type="checkbox" name="" id="">
+            <label class="radio__check--label" for="">Other (Specify)</label><input type="text" name="" id="" class="input">
+        </div>
+        <div class="form--div"><label for="">Date of treatment</label><input type="date" name="" id="" class="input"></div>
+        <input type="submit" value="Next">
+    </form>
+</section>
 {% endblock %}
