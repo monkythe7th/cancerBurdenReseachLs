@@ -32,12 +32,16 @@ class PatientDAO:
         data = (today,firstname,surname,gender,facility_id,national_id,dob,age,physical_address,phone,level_of_education,occupation,marital_status,religion,next_of_kin,Next_of_kin_phone)    
         cur = conn.cursor()
 
+        error = None
+
         try:
             cur.excercute(sqlQueries.Patient_Info_Sql(),data)
             conn.commit()
         except:
             conn.rollback()
+            error = "not in database"
         
+        return error
 
     def screening(form_data):
         # previous screening

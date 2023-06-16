@@ -24,6 +24,15 @@ Cancer Burden Research Project
 {% endblock %}
 {% block content %}
 <section class="ui">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
     <form action="" method="post" class="demographic--form form">
         <div class="form--div"><label for="date">Date: </label><input required type="datetime-local" name="date" id="todays__date" pattern="\d{2}/\d{2}/\d{4}" min="1/1/2010" required  class="input"></div>
         <div class="form--div"><label for="firstname">Name: </label><input required type="text" name="firstname" id="firstname" class="input"></div>

@@ -8,16 +8,13 @@ Cancer Burden Research Project
 </h1>
 {% endblock %}
 {% block content %}
-<section class="section section1">
+<section class="section section1 dashboard">
     <p class="button--opts "><a href="{{ url_for('ui.patient_demographic') }}" class="button--links">Add New Patient Record</a></p>
     <p class="button--opts "><a href="{{ url_for('ui.update_record', form='patiant_info') }}" class="button--links">Update Patient Record</a></p>
     <p class="button--opts "><a href="{{ url_for('ui.view_records') }}" class="button--links">View Patient Records</a></p>
     <p class="button--opts "><a href="" class="button--links">Delete Record</a></p>
     <hr>
-    <p class="button--opts "><a href="" class="button--links"></a></p>
-    <p class="button--opts "><a href="" class="button--links"></a></p>
     <p class="button--opts "><a href="" class="button--links">Connect to Database</a></p>
     <p class="button--opts "><a href="{{ url_for('auth.logout') }}" class="button--links">Log out</a></p>
 </section>
-<section class="section section2"></section>
 {% endblock %}

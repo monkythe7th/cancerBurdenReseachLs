@@ -5,15 +5,15 @@
 }
 
 html {
-    width: -webkit-fill-available;
     height: -webkit-fill-available;
+    width: -webkit-fill-available;
 }
 
 body {
     font: 18px sans-serif;
     height: 100%;
-    width: 100%;
     position: relative;
+    width: 100%;
 }
 
 header {
@@ -28,24 +28,32 @@ header {
 }
 
 #main {
-    width: 100%;
     height: 100%;
+    width: 100%;
 }
 
-.sidebar {
-    width: 25%;
-    float: left;
-    position: fixed;
+.section.dashboard {
+    margin: 30px auto;
+    position: relative;
+    text-align: center;
     top: 125px;
 }
 
-.sidebar .breadcrumbs {
-    margin: 25px auto;
-    list-style: none;
+.sidebar {
+    float: left;
+    position: fixed;
+    top: 125px;
+    width: 25%;
 }
 
-/* .sidebar .breadcrumbs > li {
-} */
+.sidebar .breadcrumbs {
+    list-style: none;
+    margin: 25px auto;
+}
+
+.sidebar .breadcrumbs > li :hover {
+    background-color: #60c2ff;
+}
 
 .sidebar .breadcrumbs > li.active {
     font-weight: bold;
@@ -55,7 +63,7 @@ header {
 .sidebar .breadcrumbs a {
     color: #000;
     display: block;
-    padding: 5px 25px;
+    padding: 7.5px 25px;
     text-decoration: none;
 }
 
@@ -69,9 +77,9 @@ header {
 }
 
 .form.auth--form {
-    width: 60%;
     height: 60%;
     margin: auto;
+    width: 60%;
 }
 
 .form--div {
@@ -91,8 +99,8 @@ header {
 }
 
 .ui .form--div.full__width textarea {
-    width: 50%;
     height: 60px;
+    width: 50%;
 }
 
 .ui .form--div.full__width input[type='text'] {
@@ -141,12 +149,27 @@ header {
 }
 
 .button--opts {
-    width: 300px;
-    text-align: center;
-    margin: 5px;
-    padding: 5px;
     border: 1px solid;
     border-radius: 25px;
+    display: inline-block;
+    height: 100px;
+    margin: 5px auto;
+    padding: 5px;
+    text-align: center;
+    width: 250px;
+}
+
+.button--opts a {
+    color: #000;
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
+
+.button--opts a:hover {
+    color: #d308d0;
+    text-decoration: underline;
 }
 
 input[type="submit"] {

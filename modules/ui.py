@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, render_template, request, redirect, url_for, g
+from flask import Flask, Blueprint, render_template, request, redirect, url_for, g, flash
 from .patientDAO import *
 from .auth import *
 
@@ -7,11 +7,13 @@ bp = Blueprint('ui',__name__,url_prefix='/ui')
 @bp.route('/', methods=['POST','GET'])
 # @login_required
 def patient_demographic():
+    error = None
     if request.method == 'POST':
         try:
-            PatientDAO.patient_demographic(request.form)
+            error = PatientDAO.patient_demographic(request.form)
         finally:
-            return redirect(url_for('ui.screening'))
+            if error == None: return redirect(url_for('ui.screening'))
+            flash(error,'warning')
     return render_template('demographic.html')
 
 @bp.route('/screening', methods=['POST','GET'])
@@ -23,7 +25,7 @@ def screening():
         finally:
             return redirect(url_for('ui.review',name='screening'))
     return render_template('screening.html')
-        
+
 @bp.route('/tumour', methods=['POST','GET'])
 # @login_required
 def tumour():
