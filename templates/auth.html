@@ -4,9 +4,9 @@ Cancer Burden Research Project
 {% endblock %}
 {% block header %}
 <h1>
-    Cancer Screening Database Lesotho
+    Lesotho Cancer Registry System
 </h1>
-<h2>Authentication setup</h2>
+<h2>Add new user</h2>
 {% endblock %}
 {% block sidebar %}
 <div class="sidebar">
@@ -17,5 +17,21 @@ Cancer Burden Research Project
 </div>
 {% endblock %}
 {% block content %}
-<section class="ui"></section>
+<section class="ui">
+    <form method="post" class="form auth" id="new__user">
+        <div class="form--div"><label for="fullname">Full Name</label><input name="fullname" class="input auth--input" id="fullname" type="text"></div>
+        <div class="form--div"><label for="username">username</label><input name="username" class="input auth--input" id="username" type="text"></div>
+        <div class="form--div"><label for="email">E-mail</label><input name="email" class="input auth--input" id="email" type="email"></div>
+        <div class="form--div"><label for="password">Password</label><input name="password" class="input auth--input" id="password" type="password"></div>
+        <div class="form--div">
+            <label for="auth--role">Role</label>
+            <select id="auth--role" name="auth--role" class="input auth--input">
+                <option value="admin">Admin</option>
+                <option value="registrar">Registrar</option>
+                <option value="reviewer">Reviewer</option>
+            </select>
+        </div>
+        <input type="submit" value="Create User">
+    </form>
+</section>
 {% endblock %}

@@ -27,6 +27,13 @@ header {
     z-index: 8;
 }
 
+header img.logo {
+    width: 150px;
+    position: absolute;
+    left: 25px;
+    top: 12.5px;
+}
+
 #main {
     height: 100%;
     width: 100%;
@@ -157,17 +164,12 @@ header {
     padding: 5px;
     text-align: center;
     width: 250px;
-}
-
-.button--opts a {
     color: #000;
-    display: block;
-    height: 100%;
-    width: 100%;
     text-decoration: none;
 }
 
-.button--opts a:hover {
+
+.button--opts:hover {
     color: #d308d0;
     text-decoration: underline;
 }

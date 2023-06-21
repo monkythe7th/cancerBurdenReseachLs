@@ -7,10 +7,13 @@
 <meta name="authour" content="monkythe7th">
 <title>{% block title %}{% endblock %}</title>
 <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
-<link rel="icon" href="{{ url_for('static', filename='imgs/photo.png') }}">
+<link rel="icon" href="{{ url_for('static', filename='imgs/photo_1.png') }}">
+<!-- <link href="https://css.gg/css?=|add-r|database|file-add|file-document|file-remove|user-add|user" rel="stylesheet"> -->
 </head>
 <body>
 <header class="header clear" id="header">
+    <img class="logo" src="{{ url_for('static', filename='imgs/photo_1.png') }}" alt="logo1">
+    <!-- <img class="logo" src="{{ url_for('static', filename='imgs/photo_2.png') }}" alt="logo2"> -->
 {% block header %}{% endblock %}
 </header>
 <main class="main clear" id="main">
