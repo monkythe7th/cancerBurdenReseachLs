@@ -1,6 +1,7 @@
-from flask import Flask, Blueprint, render_template, request, redirect, url_for, g, flash
+from flask import Flask, Blueprint, render_template, request, redirect, url_for, g, flash, session
 from .patientDAO import *
 from .auth import *
+from ..api import read as getter
 
 bp = Blueprint('ui',__name__,url_prefix='/ui')
 
@@ -89,5 +90,13 @@ def review(name):
     except:
         pass
     finally:
-        return patient
+        g.patient = patient
     return render_template('get_one.html')
+
+@bp.route('auth/dashboard')
+# @login_required
+# @admin_only
+def admin_dash():
+    g.users = getter.get_all()
+    # session['users'] = g.users
+    return render_template('authdash.html')

@@ -5,6 +5,7 @@ from mysql import connector
 import yaml 
 # noSQL db import for authentication: mongodb
 from pymongo import MongoClient
+from werkzeug.security import generate_password_hash, check_password_hash
 # from flask_pymongo import PyMongo
 
 
@@ -37,7 +38,9 @@ client = MongoClient("mongodb://localhost:27017/?directConnection=true")
 
 def noSQLdb():
     db = client["les_can_reg"]
-    return db['auth']
+    col = db['auth']
+
+    return col
 
 if __name__ == '__main__':
     noSQLdb()

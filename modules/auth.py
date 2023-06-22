@@ -43,28 +43,32 @@ def login():
 # @admin_only
 def create_user():
     if request.method == 'POST':
-        # fullName = request.form['fullname']
+        fullName = request.form['fullname']
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
         role = request.form['auth--role']
         user = {
-            # 'name': fullName,
+            'name': fullName,
             'username': username,
             'email': email,
             'user_type': role,
-            'password': password
+            'password': generate_password_hash(password)
         }
         error = None
         try:
             u = getter.read({'username':username})
-            if not u or not error: return
+            if u: flash('')
             create.create(user)
         except Exception:
             flash(error,'error')
         finally:
-            pass
+            return redirect(url_for('ui.admin_dash'))
     return render_template('auth.html')
+
+@bp.route('/update')
+def update_user():
+    return render_template('authupdate.html')
 
 @bp.route('/logout')
 def logout():

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}
+Cancer Burden Research Project
+{% endblock %}
+{% block header %}
+<h1>
+    Lesotho Cancer Registry System
+</h1>
+<h2>Admin Dashboard</h2>
+{% endblock %}
+{% block sidebar %}
+<div class="sidebar">
+    <ul class="breadcrumbs">
+        <li><a href="{{ url_for('index') }}">Dashboard</a></li>
+        <li class="active"><a href="{{ url_for('ui.admin_dash') }}">Admin Dashboard</a></li>
+        <li><a href="{{ url_for('auth.create_user') }}">Add user</a></li>
+        <li><a href="{{ url_for('auth.update_user') }}">Update user</a></li>
+    </ul>
+</div>
+{% endblock %}
+{% block content %}
+<section class="section section1 ui">
+    <div class="users--block">
+        <ul class="users--list">
+        {% for user in g.users %}
+            <li class="user">{{ user.name + " " + user.user_type }}</li>
+        {%endfor %}
+        </ul>
+    </div>
+    
+    <a href="{{ url_for('auth.create_user') }}" class="button--opts">
+        <i></i>
+        <p>create User</p>
+    </a>
+    <a href="{{ url_for('auth.update_user') }}" class="button--opts">
+        <i></i>
+        <p>update user</p>
+    </a>
+    <!-- <a href="" class="button--opts">
+        <i></i>
+        <p></p>
+    </a> -->
+</section>
+{% endblock %}
