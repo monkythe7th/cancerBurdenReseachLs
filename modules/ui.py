@@ -5,7 +5,7 @@ from ..api import read as getter
 
 bp = Blueprint('ui',__name__,url_prefix='/ui')
 
-# 
+# patient information form
 @bp.route('/', methods=['POST','GET'])
 @login_required
 @read_write_perm
@@ -19,6 +19,7 @@ def patient_demographic():
             flash(error,'warning')
     return render_template('demographic.html')
 
+# cancer screening form
 @bp.route('/screening', methods=['POST','GET'])
 @login_required
 @read_write_perm
@@ -30,6 +31,7 @@ def screening():
             return redirect(url_for('ui.review',name='screening'))
     return render_template('screening.html')
 
+# cancer tumour marker form
 @bp.route('/tumour', methods=['POST','GET'])
 @login_required
 @read_write_perm
@@ -41,6 +43,7 @@ def tumour():
             return redirect(url_for('ui.treatment'))
     return render_template('tumour_form.html')
 
+# recommended treatment form
 @bp.route('/treatment', methods=['POST','GET'])
 @login_required
 @read_write_perm
@@ -52,6 +55,7 @@ def treatment():
             return redirect(url_for('ui.source'))
     return render_template('treatment.html')
 
+# source of information form
 @bp.route('/source', methods=['POST','GET'])
 @login_required
 @read_write_perm
@@ -63,6 +67,7 @@ def source():
             return redirect(url_for('ui.follow_up'))
     return render_template('source_info.html')
 
+# follow up form
 @bp.route('/follow_up', methods=['POST','GET'])
 @login_required
 @read_write_perm
@@ -74,18 +79,21 @@ def follow_up():
             return redirect(url_for('ui.review',name='all'))
     return render_template('followup.html')
 
+# view records, any one who has log in credentials can use this
 @bp.route('/view_records')
 @login_required
 def view_records():
     records = PatientDAO.get_records()
     return render_template('get_all.html',records=records)
 
+# rupdate patient info
 @bp.route('/update/<form>')
 @login_required
 @read_write_perm
 def update_record(form):
     pass
 
+# review single patient
 @bp.route('/review/<name>')
 @login_required
 def review(name):
@@ -101,6 +109,7 @@ def review(name):
         g.patient = patient
     return render_template('get_one.html')
 
+# authentication ui dashboard
 @bp.route('auth/dashboard')
 @login_required
 @read_write_perm

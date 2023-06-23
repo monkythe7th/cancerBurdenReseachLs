@@ -25,7 +25,9 @@ def Connection():
 def cursor():
     pass
 
+# ============================================
 # connecting to noSQLdb: i.e. mongodb;
+# ============================================
 uri = "mongodb+srv://cluster0.7nocv.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority"
 # client = MongoClient(os.environ['noSQL_DB_CONN'])
 client = MongoClient("mongodb://localhost:27017/?directConnection=true")
