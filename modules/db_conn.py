@@ -5,7 +5,6 @@ from mysql import connector
 import yaml 
 # noSQL db import for authentication: mongodb
 from pymongo import MongoClient
-from werkzeug.security import generate_password_hash, check_password_hash
 # from flask_pymongo import PyMongo
 
 
@@ -27,7 +26,6 @@ def cursor():
     pass
 
 # connecting to noSQLdb: i.e. mongodb;
-# ToDo: add connection to mongodb
 uri = "mongodb+srv://cluster0.7nocv.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority"
 # client = MongoClient(os.environ['noSQL_DB_CONN'])
 client = MongoClient("mongodb://localhost:27017/?directConnection=true")

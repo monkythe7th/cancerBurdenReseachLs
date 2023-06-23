@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}
+Cancer Burden Research Project
+{% endblock %}
+{% block header %}
+<h1>
+    Lesotho Cancer Registry System
+</h1>
+<h2>Update User</h2>
+{% endblock %}
+{% block sidebar %}
+<div class="sidebar">
+    <ul class="breadcrumbs">
+        <li><a href="{{ url_for('index') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('ui.admin_dash') }}">Admin Dashboard</a></li>
+        <li><a href="{{ url_for('auth.create_user') }}">Add user</a></li>
+        <li class="active"><a href="{{ url_for('auth.update_user') }}">Update user</a></li>
+    </ul>
+</div>
+{% endblock %}
+{% block content %}
+<section class="ui">
+    <form method="post" class="form auth" id="new__user">
+        <div class="form--div"><label for="fullname">Full Name</label><input name="fullname" class="input auth--input"
+                id="fullname" type="text"></div>
+        <div class="form--div"><label for="username">username</label><input name="username" class="input auth--input"
+                id="username" type="text"></div>
+        <div class="form--div"><label for="email">E-mail</label><input name="email" class="input auth--input" id="email"
+                type="email"></div>
+        <div class="form--div"><label for="password">Password</label><input name="password" class="input auth--input"
+                id="password" type="password"></div>
+        <div class="form--div"><label for="password">re-enter Password</label><input name="password" class="input auth--input"
+                id="password" type="password"></div>
+        <div class="form--div">
+            <label for="auth--role">Role</label>
+            <select id="auth--role" name="auth--role" class="input auth--input">
+                <option value="admin">Admin</option>
+                <option value="registrar">Registrar</option>
+                <option value="reviewer">Reviewer</option>
+            </select>
+        </div>
+        <input type="submit" value="Update User">
+    </form>
+</section>
+{% endblock %}

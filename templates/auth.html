@@ -12,7 +12,9 @@ Cancer Burden Research Project
 <div class="sidebar">
     <ul class="breadcrumbs">
         <li><a href="{{ url_for('index') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('ui.admin_dash') }}">Admin Dashboard</a></li>
         <li class="active"><a href="{{ url_for('auth.create_user') }}">Add user</a></li>
+        <li><a href="{{ url_for('auth.update_user') }}">Update user</a></li>
     </ul>
 </div>
 {% endblock %}

@@ -5,15 +5,16 @@ from ..api import create, read as getter
 
 bp = Blueprint("auth",__name__,url_prefix='/auth')
 
-
+# 
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if g.user == None:
-            return redirect('login')
+            return redirect(url_for('auth.login'))
         return view(**kwargs)
     return wrapped_view
 
+# Administrator permissions 
 def admin_only(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
@@ -22,6 +23,15 @@ def admin_only(view):
         return view(**kwargs)
     return wrapped_view
 
+# read / write permissions for Administrator and Registrar
+def read_write_perm(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user_type == 'admin' or g.user_type == 'registrar': return view(**kwargs)
+        return redirect(url_for('index'))
+    return wrapped_view
+
+# login
 @bp.route('/login', methods=['POST','GET'])
 def login():
     if request.method == 'POST':
@@ -30,17 +40,21 @@ def login():
         error = None
         user = getter.read({'username':username})
         if not user:
-            error = "invalid username or password"
+            error = "invalid username"
+            flash(error)
+        elif not check_password_hash(user['password'],password): 
+            error = "invalid password"
             flash(error)
         if error is None:
             session.clear()
-            session['user_id'] = user['id']
+            session['user_id'] = user['username']
             return redirect(url_for('index'))
     return render_template('login.html')
 
+# creating a new user
 @bp.route('/create_user', methods=['POST','GET'])
-# @login_required
-# @admin_only
+@login_required
+@admin_only
 def create_user():
     if request.method == 'POST':
         fullName = request.form['fullname']
@@ -66,7 +80,9 @@ def create_user():
             return redirect(url_for('ui.admin_dash'))
     return render_template('auth.html')
 
+#  update user info
 @bp.route('/update')
+@admin_only
 def update_user():
     return render_template('authupdate.html')
 
@@ -75,10 +91,11 @@ def logout():
     session.clear()
     return redirect(url_for('index'))
 
+# load a user into the session
 @bp.before_app_request
 def load_logged_user():
     uid = session.get('user_id')
     if not uid:
         g.user = None
     else:
-        g.user = {}
+        g.user = getter.read({'username':uid})

@@ -1,4 +1,4 @@
-from mysql import connector
+# from mysql import connector
 from ..modules import sqlQueries
 from ..modules.db_conn import Connection
 

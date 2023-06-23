@@ -5,8 +5,10 @@ from ..api import read as getter
 
 bp = Blueprint('ui',__name__,url_prefix='/ui')
 
+# 
 @bp.route('/', methods=['POST','GET'])
-# @login_required
+@login_required
+@read_write_perm
 def patient_demographic():
     error = None
     if request.method == 'POST':
@@ -18,7 +20,8 @@ def patient_demographic():
     return render_template('demographic.html')
 
 @bp.route('/screening', methods=['POST','GET'])
-# @login_required
+@login_required
+@read_write_perm
 def screening():
     if request.method == 'POST':
         try:
@@ -28,7 +31,8 @@ def screening():
     return render_template('screening.html')
 
 @bp.route('/tumour', methods=['POST','GET'])
-# @login_required
+@login_required
+@read_write_perm
 def tumour():
     if request.method == 'POST':
         try :
@@ -38,7 +42,8 @@ def tumour():
     return render_template('tumour_form.html')
 
 @bp.route('/treatment', methods=['POST','GET'])
-# @login_required
+@login_required
+@read_write_perm
 def treatment():
     if request.method == 'POST':
         try :
@@ -48,7 +53,8 @@ def treatment():
     return render_template('treatment.html')
 
 @bp.route('/source', methods=['POST','GET'])
-# @login_required
+@login_required
+@read_write_perm
 def source():
     if request.method == 'POST':
         try :
@@ -58,7 +64,8 @@ def source():
     return render_template('source_info.html')
 
 @bp.route('/follow_up', methods=['POST','GET'])
-# @login_required
+@login_required
+@read_write_perm
 def follow_up():
     if request.method == 'POST':
         try :
@@ -68,18 +75,19 @@ def follow_up():
     return render_template('followup.html')
 
 @bp.route('/view_records')
-# @login_required
+@login_required
 def view_records():
     records = PatientDAO.get_records()
     return render_template('get_all.html',records=records)
 
 @bp.route('/update/<form>')
-# @login_required
+@login_required
+@read_write_perm
 def update_record(form):
     pass
 
 @bp.route('/review/<name>')
-# @login_required
+@login_required
 def review(name):
     patient = ''
     try:
@@ -94,8 +102,8 @@ def review(name):
     return render_template('get_one.html')
 
 @bp.route('auth/dashboard')
-# @login_required
-# @admin_only
+@login_required
+@read_write_perm
 def admin_dash():
     g.users = getter.get_all()
     # session['users'] = g.users

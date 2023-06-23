@@ -8,9 +8,18 @@ Cancer Burden Research Project
 </h1>
 {% endblock %}
 {% block content %}
-<form action="" method="post" class="form auth--form">
-    <div class="form--div"><label for="username">user: </label><input type="text" class="auth--input" name="username"></div>
-    <div class="form--div"><label for="password">Password: </label><input type="password" class="auth--input" name="password"></div>
-    <input type="submit" value="login">
-</form>
+<section class="section ui">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action="" method="post" class="form auth--form">
+        <div class="form--div"><label for="username">user: </label><input type="text" class="auth--input" name="username"></div>
+        <div class="form--div"><label for="password">Password: </label><input type="password" class="auth--input" name="password"></div>
+        <input type="submit" value="login">
+    </form>
+</section>
 {% endblock %}
