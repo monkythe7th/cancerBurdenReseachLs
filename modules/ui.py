@@ -1,4 +1,5 @@
 from flask import Flask, Blueprint, render_template, request, redirect, url_for, g, flash, session
+from 
 from .patientDAO import *
 from .auth import *
 from ..api import read as getter
@@ -13,7 +14,7 @@ def patient_demographic():
     error = None
     if request.method == 'POST':
         try:
-            error = PatientDAO.patient_demographic(request.form)
+            error = PatientDAO.patient_demographic(mysql)
         finally:
             if error == None: return redirect(url_for('ui.screening'))
             flash(error,'warning')
@@ -26,7 +27,7 @@ def patient_demographic():
 def screening():
     if request.method == 'POST':
         try:
-            PatientDAO.screening(request.form)
+            PatientDAO.screening(mysql)
         finally:
             return redirect(url_for('ui.review',name='screening'))
     return render_template('screening.html')
@@ -38,7 +39,7 @@ def screening():
 def tumour():
     if request.method == 'POST':
         try :
-            PatientDAO.tumour(request.form)
+            PatientDAO.tumour(mysql)
         finally:
             return redirect(url_for('ui.treatment'))
     return render_template('tumour_form.html')
@@ -50,7 +51,7 @@ def tumour():
 def treatment():
     if request.method == 'POST':
         try :
-            PatientDAO.treatment(request.form)
+            PatientDAO.treatment(mysql)
         finally:
             return redirect(url_for('ui.source'))
     return render_template('treatment.html')
@@ -62,7 +63,7 @@ def treatment():
 def source():
     if request.method == 'POST':
         try :
-            PatientDAO.source(request.form)
+            PatientDAO.source(mysql)
         finally:
             return redirect(url_for('ui.follow_up'))
     return render_template('source_info.html')
@@ -74,7 +75,7 @@ def source():
 def follow_up():
     if request.method == 'POST':
         try :
-            PatientDAO.follow_up(request.form)
+            PatientDAO.follow_up(mysql)
         finally:
             return redirect(url_for('ui.review',name='all'))
     return render_template('followup.html')
@@ -112,7 +113,7 @@ def review(name):
 # authentication ui dashboard
 @bp.route('auth/dashboard')
 @login_required
-@read_write_perm
+# @read_write_perm
 def admin_dash():
     g.users = getter.get_all()
     # session['users'] = g.users

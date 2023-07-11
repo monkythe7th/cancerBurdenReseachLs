@@ -10,32 +10,32 @@ Cancer Burden Research Project
 {% block content %}
 <section class="section section1 dashboard">
     <a class="button--opts reg--opts" href="{{ url_for('ui.patient_demographic') }}">
-        <img src="{{ url_for('static',file='imgs/file-plus-light.svg') }}"/>
+        <img src="{{ url_for('static',filename='imgs/file-plus-light.svg') }}"/>
         <p class="button--links">Add New Patient Record</p>
     </a>
     <a class="button--opts reg--opts" href="{{ url_for('ui.update_record', form='patiant_info') }}">
-        <img src="{{ url_for('static',file='imgs/file-text-light.svg') }}"/>
+        <img src="{{ url_for('static',filename='imgs/file-text-light.svg') }}"/>
         <p class="button--links">Update Patient Record</p>
     </a>
     <a class="button--opts " href="{{ url_for('ui.view_records') }}">
-        <img src="{{ url_for('static',file='imgs/files-light.svg') }}"/>
+        <img src="{{ url_for('static',filename='imgs/files-light.svg') }}"/>
         <p class="button--links">View Patient Records</p>
     </a>
     <a class="button--opts admin--opts" href="">
-        <img src="{{ url_for('static',file='imgs/file-minus-light.svg') }}"/>
+        <img src="{{ url_for('static',filename='imgs/file-minus-light.svg') }}"/>
         <p class="button--links">Delete Record</p>
     </a>
     <hr>
     <a class="button--opts admin--opts" href="{{ url_for('ui.admin_dash') }}">
-        <img src="{{ url_for('static',file='imgs/users-three-light.svg') }}"/>
+        <img src="{{ url_for('static',filename='imgs/users-three-light.svg') }}"/>
         <p class="button--links">admin dashboard</p>
     </a>
     <a class="button--opts " href="">
-        <img src="{{ url_for('static',file='imgs/database-light.svg') }}"/>
+        <img src="{{ url_for('static',filename='imgs/database-light.svg') }}"/>
         <p class="button--links">Connect to Database</p>
     </a>
     <a class="button--opts " href="{{ url_for('auth.logout') }}">
-        <img src="{{ url_for('static',file='imgs/sign-out-light.svg') }}"/>
+        <img src="{{ url_for('static',filename='imgs/sign-out-light.svg') }}"/>
         <p class="button--links">Log out</p>
     </a>
 </section>

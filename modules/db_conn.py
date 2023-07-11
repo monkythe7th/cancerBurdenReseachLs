@@ -8,7 +8,7 @@ from pymongo import MongoClient
 # from flask_pymongo import PyMongo
 
 
-def Connection():
+def FlaskDB_connection(app):
 
     db = yaml.load(open('db.yaml'), Loader= yaml.FullLoader)
     # #congfigure db
@@ -20,7 +20,7 @@ def Connection():
         'MYSQL_PASSWORD': db['mysql_password'],
         'MYSQL_DB': db['mysql_db']
     }
-    return config
+    app.config = config
 
 def cursor():
     pass

@@ -22,8 +22,9 @@ Cancer Burden Research Project
 <section class="section section1 ui">
     <div class="users--block">
         <ul class="users--list">
+            <li>user | user type</li>
         {% for user in g.users %}
-            <li class="user">{{ user.name + " " + user.user_type }}</li>
+            <li class="user">{{ user.name + " | " + user.user_type }}</li>
         {%endfor %}
         </ul>
     </div>

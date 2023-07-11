@@ -11,8 +11,10 @@ def create_app():
         SESSION_TYPE='filesystem'
     )
     Session(app)
-    app.config.from_object(db_conn.Connection())
+    # app.config.from_object(db_conn.Connection())
     
+    db_conn.FlaskDB_connection(app)
+
     @app.route('/')
     @auth.login_required
     def index():

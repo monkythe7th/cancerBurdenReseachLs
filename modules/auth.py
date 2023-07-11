@@ -18,8 +18,7 @@ def login_required(view):
 def admin_only(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-        if g.user_type != 'admin' or g.user_type == None:
-            return redirect(url_for('index'))
+        if g.user['user_type'] != 'admin' or g.user['user_type'] == None: return redirect(url_for('index'))
         return view(**kwargs)
     return wrapped_view
 
@@ -27,7 +26,7 @@ def admin_only(view):
 def read_write_perm(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-        if g.user_type == 'admin' or g.user_type == 'registrar': return view(**kwargs)
+        if g.user['user_type'] == 'admin' or g.user['user_type'] == 'registrar' or g.user['user_type'] != None: return view(**kwargs)
         return redirect(url_for('index'))
     return wrapped_view
 
@@ -54,7 +53,7 @@ def login():
 # creating a new user
 @bp.route('/create_user', methods=['POST','GET'])
 @login_required
-@admin_only
+# @admin_only
 def create_user():
     if request.method == 'POST':
         fullName = request.form['fullname']
