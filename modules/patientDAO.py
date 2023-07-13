@@ -1,33 +1,33 @@
 # from mysql import connector
+from flask import request
 from ..modules import sqlQueries
-from ..modules.db_conn import Connection
+# from ..modules.db_conn import Connection
 
 class PatientDAO:
 
     
 
-    def patient_demographic(form_data):
+    def patient_demographic(db):
 
         #congfigure db
-        conn = Connection()
-
-        today = form_data['date']
-        firstname = form_data['firstname']
-        surname = form_data['surname']
-        gender = form_data['gender']
-        facility_id = form_data['facility__identification__number']
-        national_id = form_data['national__identification__number']
-        dob = form_data['dob']
-        age = form_data['age']
-        physical_address = form_data['physical__address']
-        phone = form_data['phone']
-        level_of_education = form_data['level__of__education']
-        occupation = form_data['occupation']
-        marital_status = form_data['marital__status']
-        religion = form_data['religion']
-        no_of_children = form_data['number__of__children']
-        next_of_kin = form_data['nok']
-        Next_of_kin_phone = form_data['nok__phone']
+        
+        today = request.form['date']
+        firstname = request.form['firstname']
+        surname = request.form['surname']
+        gender = request.form['gender']
+        facility_id = request.form['facility__identification__number']
+        national_id = request.form['national__identification__number']
+        dob = request.form['dob']
+        age = request.form['age']
+        physical_address = request.form['physical__address']
+        phone = request.form['phone']
+        level_of_education = request.form['level__of__education']
+        occupation = request.form['occupation']
+        marital_status = request.form['marital__status']
+        religion = request.form['religion']
+        no_of_children = request.form['number__of__children']
+        next_of_kin = request.form['nok']
+        Next_of_kin_phone = request.form['nok__phone']
 
         data = (today,firstname,surname,gender,facility_id,national_id,dob,age,physical_address,phone,level_of_education,occupation,marital_status,religion,next_of_kin,Next_of_kin_phone)    
         cur = conn.cursor()
@@ -43,68 +43,66 @@ class PatientDAO:
         
         return error
 
-    def screening(form_data):
+    def screening(db):
         # previous screening
-        previous_screening = form_data['']
-        previous_screening_type = form_data['']
-        treatment = form_data['']
-        date_of_results = form_data['']
+        previous_screening = request.form['']
+        previous_screening_type = request.form['']
+        treatment = request.form['']
+        date_of_results = request.form['']
         # current screening
-        refering_facility = form_data['']
-        family_planning = form_data['']
-        hiv_status = form_data['']
-        hts = form_data['']
-        hiv_test_results = form_data['']
-        purpose_of_visit = form_data['']
-        screening_type = form_data['']
-        screening_method = form_data['']
-        screening_results = form_data['']
-        management_and_treatment = form_data['']
-        next_visit = form_data['']
+        refering_facility = request.form['']
+        family_planning = request.form['']
+        hiv_status = request.form['']
+        hts = request.form['']
+        hiv_test_results = request.form['']
+        purpose_of_visit = request.form['']
+        screening_type = request.form['']
+        screening_method = request.form['']
+        screening_results = request.form['']
+        management_and_treatment = request.form['']
+        next_visit = request.form['']
         try:
             pass
         except:
             pass
 
-    def tumour(form_data):
-        incidence_date = form_data['']
-        basis_of_diagnosis = form_data['']
-        topography = form_data['']
-        morphology = form_data['']
-        laterlity = form_data['']
-        stage = form_data['']
+    def tumour(db):
+        incidence_date = request.form['']
+        basis_of_diagnosis = request.form['']
+        topography = request.form['']
+        morphology = request.form['']
+        laterlity = request.form['']
+        stage = request.form['']
 
         pass
 
-    def treatment(form_data):
-        treatment_type = form_data['']
-        treatment_date = form_data['']
+    def treatment(db):
+        treatment_type = request.form['']
+        treatment_date = request.form['']
         pass
 
-    def source(form_data):
-        institution = form_data['']
-        ward = form_data['']
-        case_no = form_data['']
-        date_of_source = form_data['']
-        laboratory = form_data['']
-        lab_no = form_data['']
+    def source(db):
+        institution = request.form['']
+        ward = request.form['']
+        case_no = request.form['']
+        date_of_source = request.form['']
+        laboratory = request.form['']
+        lab_no = request.form['']
         pass
 
-    def follow_up(form_data):
-        date_of_last_contact = form_data['']
-        state_of_last_contact = form_data['']
-        cause_of_death = form_data['']
-        refered_from = form_data['']
-        ref_no1 = form_data['']
-        refered_to = form_data['']
-        ref_no2 = form_data['']
+    def follow_up(db):
+        date_of_last_contact = request.form['']
+        state_of_last_contact = request.form['']
+        cause_of_death = request.form['']
+        refered_from = request.form['']
+        ref_no1 = request.form['']
+        refered_to = request.form['']
+        ref_no2 = request.form['']
         pass
 
     def get_records():
         pass
 
     def get_one_record():
-        cur = Connection().cursor()
-        cur.execute("select * from patient_information")
-
-        return cur.fetchone()
+        
+        pass
