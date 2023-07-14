@@ -24,44 +24,10 @@ Cancer Burden Research Project
 {% endblock %}
 {% block content %}
 <section class="ui">
-<table>
-    <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-    </tr>
-</table>
-{{% for patient in records %}}
-
-{{% end for %}}
+    <ul>
+        {{% for patient in g.records %}}
+        <li>{{ patient }}</li>
+        {{% end for %}}
+    </ul>
 </section>
 {% endblock %}

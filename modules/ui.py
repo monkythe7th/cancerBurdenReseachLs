@@ -1,10 +1,10 @@
 from flask import Flask, Blueprint, render_template, request, redirect, url_for, g, flash, session
-from 
 from .patientDAO import *
 from .auth import *
 from ..api import read as getter
 
 bp = Blueprint('ui',__name__,url_prefix='/ui')
+Patient = PatientDAO()
 
 # patient information form
 @bp.route('/', methods=['POST','GET'])
@@ -14,7 +14,7 @@ def patient_demographic():
     error = None
     if request.method == 'POST':
         try:
-            error = PatientDAO.patient_demographic(mysql)
+            error = Patient.patient_demographic()
         finally:
             if error == None: return redirect(url_for('ui.screening'))
             flash(error,'warning')
@@ -27,7 +27,7 @@ def patient_demographic():
 def screening():
     if request.method == 'POST':
         try:
-            PatientDAO.screening(mysql)
+            Patient.screening()
         finally:
             return redirect(url_for('ui.review',name='screening'))
     return render_template('screening.html')
@@ -39,7 +39,7 @@ def screening():
 def tumour():
     if request.method == 'POST':
         try :
-            PatientDAO.tumour(mysql)
+            Patient.tumour()
         finally:
             return redirect(url_for('ui.treatment'))
     return render_template('tumour_form.html')
@@ -51,7 +51,7 @@ def tumour():
 def treatment():
     if request.method == 'POST':
         try :
-            PatientDAO.treatment(mysql)
+            Patient.treatment()
         finally:
             return redirect(url_for('ui.source'))
     return render_template('treatment.html')
@@ -63,7 +63,7 @@ def treatment():
 def source():
     if request.method == 'POST':
         try :
-            PatientDAO.source(mysql)
+            Patient.source()
         finally:
             return redirect(url_for('ui.follow_up'))
     return render_template('source_info.html')
@@ -75,7 +75,7 @@ def source():
 def follow_up():
     if request.method == 'POST':
         try :
-            PatientDAO.follow_up(mysql)
+            Patient.follow_up()
         finally:
             return redirect(url_for('ui.review',name='all'))
     return render_template('followup.html')
@@ -84,10 +84,10 @@ def follow_up():
 @bp.route('/view_records')
 @login_required
 def view_records():
-    records = PatientDAO.get_records()
-    return render_template('get_all.html',records=records)
+    g.records = Patient.get_records()
+    return render_template('get_all.html')
 
-# rupdate patient info
+# update patient info
 @bp.route('/update/<form>')
 @login_required
 @read_write_perm
@@ -101,7 +101,7 @@ def review(name):
     patient = ''
     try:
         if name == 'screening':
-            patient = PatientDAO.get_one_record()
+            patient = Patient.get_one_record()
         elif name == 'all':
             pass
     except:

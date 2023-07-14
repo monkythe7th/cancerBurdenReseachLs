@@ -13,7 +13,7 @@ def create_app():
     Session(app)
     # app.config.from_object(db_conn.Connection())
     
-    db_conn.FlaskDB_connection(app)
+    # db_conn.FlaskDB_connection(app)
 
     @app.route('/')
     @auth.login_required
