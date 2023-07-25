@@ -60,12 +60,8 @@ class PatientDAO:
 
     def screening(self):
         # previous screening
-        previous_screening = request.form['previous__screening']
-        previous_screening_type = request.form['previous__screening']
-        treatment = request.form['previous__screening']
-        date_of_results = request.form['previous__screening']
+        
         # current screening
-        refering_facility = request.form['refering__facility']
         family_planning = request.form['family__planning']
         hts = request.form['hts__offered']
         hiv_test_results = request.form['hiv__results']
@@ -77,11 +73,6 @@ class PatientDAO:
         next_visit = request.form['next__visit']
         
         data = {
-            'previous_screening':previous_screening,
-            'previous_screening_type':previous_screening_type,
-            'treatment':treatment,
-            'date_of_results':date_of_results,
-            'refering_facility':refering_facility,
             'family_planning':family_planning,
             'hts':hts,
             'hiv_test_results':hiv_test_results,

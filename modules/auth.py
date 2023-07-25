@@ -37,7 +37,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
         error = None
-        user = getter.read({'username':username})
+        user = getter.read('admin',{'username':username})
         if not user:
             error = "invalid username"
             flash(error)
@@ -70,9 +70,9 @@ def create_user():
         }
         error = None
         try:
-            u = getter.read({'username':username})
+            u = getter.read('admin',{'username':username})
             if u: flash('')
-            create.create(user)
+            create.create('admin',user)
         except Exception:
             flash(error,'error')
         finally:
@@ -97,4 +97,5 @@ def load_logged_user():
     if not uid:
         g.user = None
     else:
-        g.user = getter.read({'username':uid})
+        g.user = getter.read('admin',{'username':uid})
+

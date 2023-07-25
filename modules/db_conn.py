@@ -6,7 +6,8 @@ from flask import Flask,render_template, request, current_app
 # noSQL db import for authentication: mongodb
 from pymongo import MongoClient
 # from flask_pymongo import PyMongo
-
+from ..api import create
+from werkzeug.security import generate_password_hash
 
 # def FlaskDB_connection(app):
 
@@ -41,6 +42,17 @@ def noSQLdb(collection='test'):
     col = db[collection]
     return col
 
+def create_admin():
+    admin = {
+        'name': 'Ramoeletsi Ramoeletsi',
+        'username': 'admin',
+        'email': 'tester@test.com',
+        'user_type': 'admin',
+        'password': generate_password_hash('PassW0rd')
+    }
+    create.create('admin',admin)
+
 if __name__ == '__main__':
     noSQLdb()
+    create_admin()
     print(client.list_database_names())

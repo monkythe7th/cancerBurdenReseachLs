@@ -24,6 +24,37 @@ Cancer Burden Research Project
 {% endblock %}
 {% block content %}
 <section class="ui">
-    {{ g.patient }}
+    <!-- {{ g.patient }} -->
+    <div class="demographic">
+        <p>input date: {{ g.patient["demographic"]["input_date"] }}</p>
+        <p>First Name: {{ g.patient["demographic"]["firstname"] }}</p>
+        <p>Surname: {{ g.patient["demographic"]["surname"] }}</p>
+        <p>Gender: {{ g.patient["demographic"]["gender"] }}</p>
+        <p>Facility id: {{ g.patient["demographic"]["facility_id"] }}</p>
+        <p>National id: {{ g.patient["national_id"] }}</p>
+        <p>Date of Birth: {{ g.patient["demographic"]["dob"] }}</p>
+        <p>Age: {{ g.patient["demographic"]["age"] }}</p>
+        <p>Physical Address: {{ g.patient["demographic"]["physical_address"] }}</p>
+        <p>Phone: {{ g.patient["demographic"]["phone"] }}</p>
+        <p>Level of Education: {{ g.patient["demographic"]["level_of_education"] }}</p>
+        <p>Occupation: {{ g.patient["demographic"]["occupation"] }}</p>
+        <p>Marital Status: {{ g.patient["demographic"]["marital_status"] }}</p>
+        <p>Religion: {{ g.patient["demographic"]["religion"] }}</p>
+        <p># of Children: {{ g.patient["demographic"]["no_of_children"] }}</p>
+        <p>Next of Kin: {{ g.patient["demographic"]["next_of_kin"] }}</p>
+        <p>Next of Kin Phone: {{ g.patient["demographic"]["next_of_kin_phone"] }}</p>
+    </div>
+    <div class="screening_info">
+        <p>Family Planning: {{ g.patient["screening"]["family_planning"] }}</p>
+        <p>HTS: {{ g.patient["screening"]["hts"] }}</p>
+        <p>HIV Test Results: {{ g.patient["screening"]["hiv_test_results"] }}</p>
+        <p>Purpose of Visit: {{ g.patient["screening"]["purpose_of_visit"] }}</p>
+        <p>Screening Type: {{ g.patient["screening"]["screening_type"] }}</p>
+        <p>Screening Methods: {{ g.patient["screening"]["screening_method"] }}</p>
+        <p>Screening Results: {{ g.patient["screening"]["screening_results"] }}</p>
+        <p>Referal: {{ g.patient["screening"]["referal"] }}</p>
+        <p>Next Visit: {{ g.patient["screening"]["next_visit"] }}</p>
+    </div>
+    {{ if  }}
 </section>
 {% endblock %}
