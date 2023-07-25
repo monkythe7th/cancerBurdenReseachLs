@@ -88,6 +88,8 @@ class PatientDAO:
             self.patient['screening'] = data
         except:
             pass
+        finally:
+            return self.patient['national_id']
 
     def tumour(self):
         incidence_date = request.form['']

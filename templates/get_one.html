@@ -55,6 +55,13 @@ Cancer Burden Research Project
         <p>Referal: {{ g.patient["screening"]["referal"] }}</p>
         <p>Next Visit: {{ g.patient["screening"]["next_visit"] }}</p>
     </div>
-    {{ if  }}
+    {% if g.patient['tumour_markers'] %}
+
+    {% endif %}
+    <div class="buttons">
+        <button onclick="postRecord('home')" type="button">Save</button>
+        <button onclick="postRecord('next')" type="button">Save & Continue</button>
+        <button onclick="editRecord()" type="button">Edit</button>
+    </div>
 </section>
 {% endblock %}

@@ -26,10 +26,11 @@ def patient_demographic():
 @read_write_perm
 def screening():
     if request.method == 'POST':
+        patient_id = ''
         try:
-            Patient.screening()
+            patient_id = Patient.screening()
         finally:
-            return redirect(url_for('ui.review',name='screening'))
+            return redirect(url_for('ui.review',patient_id=patient_id))
     return render_template('screening.html')
 
 # cancer tumour marker form
@@ -77,7 +78,7 @@ def follow_up():
         try :
             Patient.follow_up()
         finally:
-            return redirect(url_for('ui.review',name='all'))
+            return redirect(url_for('ui.review'))
     return render_template('followup.html')
 
 # view records, any one who has log in credentials can use this
@@ -94,21 +95,40 @@ def view_records():
 def update_record(form):
     pass
 
-# review single patient
-@bp.route('/review/<name>')
+# update patient info
+@bp.route('/update/')
 @login_required
-def review(name):
+@read_write_perm
+def update_record():
+    pass
+
+# review single patient
+@bp.route('/review/<patient_id>')
+@login_required
+def review(patient_id):
     patient = ''
     try:
-        if name == 'screening':
+        if patient_id:
+            patient = Patient.get_one_record(patient_id)
+        else:
             patient = Patient.get_one_record()
-        elif name == 'all':
-            pass
     except:
-        pass
+        patient = 'No Record found'
     finally:
         g.patient = patient
     return render_template('get_one.html')
+
+# posting form to database
+@bp.route{'/post/<save>', methods=['POST','GET']}
+@login_required
+def post_record(save):
+    Patient.post_record()
+    if save == 'home':
+        return redirect(url_for(index))
+    if Patient.patient['tumour_markers']:
+        return redirect(url_for('ui.view_records'))
+    else:
+        return redirect(url_for('ui.tumour'))
 
 # authentication ui dashboard
 @bp.route('auth/dashboard')

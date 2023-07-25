@@ -9,3 +9,27 @@ function calcAge(params) {
     let age = document.getElementById('age');
     // ToDo: calculate the age or date of birth.
 }
+
+postRecord = (page) => {
+    let post_url = {{ url_for('ui.post_record',save=page) }};
+    fetch(post_url, {
+        method: 'POST', 
+        redirect: 'follow'
+    }).then(response => {
+        if (response.redirected) {
+            window.location = response.url
+        }
+    })
+}
+
+editRecord = () => {
+    let post_url = {{ url_for('ui.patient_demographic')}};
+    fetch(post_url, {
+        method: 'POST',
+        redirect: 'follow'
+    }).then(response => {
+        if (response.redirected) {
+            window.location = response.url
+        }
+    })
+}
