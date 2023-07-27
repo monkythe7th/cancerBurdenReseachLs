@@ -18,7 +18,7 @@ Cancer Burden Research Project
         <li><a href="{{ url_for('ui.treatment') }}">treatment</a></li>
         <li><a href="{{ url_for('ui.source') }}">source of info</a></li>
         <li class="active"><a href="{{ url_for('ui.follow_up') }}">follow up</a></li>
-        <li><a href="{{ url_for('ui.review',name='all') }}">review</a></li>
+        <li><a href="{{ url_for('ui.review', patient_id=g.patient['national_id']) }}">review</a></li>
     </ul>
 </div>
 {% endblock %}

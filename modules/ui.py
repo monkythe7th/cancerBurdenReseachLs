@@ -99,13 +99,13 @@ def update_record(form):
 @bp.route('/update/')
 @login_required
 @read_write_perm
-def update_record():
+def update_base():
     pass
 
 # review single patient
 @bp.route('/review/<patient_id>')
 @login_required
-def review(patient_id):
+def review(patient_id = None):
     patient = ''
     try:
         if patient_id:
@@ -119,7 +119,7 @@ def review(patient_id):
     return render_template('get_one.html')
 
 # posting form to database
-@bp.route{'/post/<save>', methods=['POST','GET']}
+@bp.route('/post/<save>', methods=['POST','GET'])
 @login_required
 def post_record(save):
     Patient.post_record()
