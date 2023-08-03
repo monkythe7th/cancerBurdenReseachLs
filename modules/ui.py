@@ -105,7 +105,7 @@ def update_base():
 # review single patient
 @bp.route('/review/<patient_id>')
 @login_required
-def review(patient_id = None):
+def review(patient_id = g.patient):
     patient = ''
     try:
         if patient_id:
