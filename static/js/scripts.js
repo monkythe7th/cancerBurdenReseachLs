@@ -11,7 +11,7 @@ function calcAge(params) {
 }
 
 postRecord = (page) => {
-    let post_url = {{ url_for('ui.post_record',save=page) }};
+    let post_url = window.location.origin + '/ui/post_record?save=' + page;
     fetch(post_url, {
         method: 'POST', 
         redirect: 'follow'
@@ -23,7 +23,7 @@ postRecord = (page) => {
 }
 
 editRecord = () => {
-    let post_url = {{ url_for('ui.patient_demographic')}};
+    let post_url = window.location.origin + '/ui/';
     fetch(post_url, {
         method: 'POST',
         redirect: 'follow'

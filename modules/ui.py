@@ -16,7 +16,7 @@ def patient_demographic():
         try:
             error = Patient.patient_demographic()
         finally:
-            if error == None: return redirect(url_for('ui.screening'))
+            if error is None: return redirect(url_for('ui.screening'))
             flash(error,'warning')
     return render_template('demographic.html')
 
@@ -119,12 +119,12 @@ def review(patient_id = None):
     return render_template('get_one.html')
 
 # posting form to database
-@bp.route('/post/<save>', methods=['POST','GET'])
+@bp.route('/post/<save>', methods=['POST'])
 @login_required
 def post_record(save):
     Patient.post_record()
     if save == 'home':
-        return redirect(url_for(index))
+        return redirect(url_for('index'))
     if Patient.patient['tumour_markers']:
         return redirect(url_for('ui.view_records'))
     else:
@@ -135,6 +135,6 @@ def post_record(save):
 @login_required
 # @read_write_perm
 def admin_dash():
-    g.users = getter.get_all()
+    g.users = getter.get_all('admin')
     # session['users'] = g.users
     return render_template('authdash.html')
