@@ -6,23 +6,23 @@ Cancer Burden Research Project
 <h1>
     Lesotho Digital Cancer Registry System
 </h1>
-<h2>Screening Review</h2>
+<h2>Review</h2>
 {% endblock %}
 {% block sidebar %}
 <div class="sidebar">
     <ul class="breadcrumbs">
         <li><a href="{{ url_for('index') }}">Dashboard</a></li>
-        <li><a href="{{ url_for('ui.demographic') }}">Patient info</a></li>
+        <li class="active"><a href="{{ url_for('ui.demographic') }}">Patient info</a></li>
         <li><a href="{{ url_for('ui.screening') }}">Screening</a></li>
-        {% if g.patient %} 
-        <li><a href="{{ url_for('ui.tumour', nat_id=g.patient['national_id']) }}">tumour markers</a></li> 
-        {% else %}
-        <li><a href="{{ url_for('ui.tumour', nat_id=None) }}">tumour markers</a></li>
-        {% endif %}
+        {% if g.patient %}
+        <li><a href="{{ url_for('ui.tumour', nat_id=g.patient['national_id']) }}">tumour markers</a></li>
         <li><a href="{{ url_for('ui.treatment') }}">treatment</a></li>
         <li><a href="{{ url_for('ui.source') }}">source of info</a></li>
         <li><a href="{{ url_for('ui.follow_up') }}">follow up</a></li>
-        <li class="active"><a href="#">review</a></li>
+        <li><a href="{{ url_for('ui.review', patient_id=g.patient['national_id']) }}">review</a></li>
+        {% else %}
+        <li><a href="{{ url_for('ui.review', patient_id='None') }}">review</a></li>
+        {% endif %}
     </ul>
 </div>
 {% endblock %}

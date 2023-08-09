@@ -8,26 +8,27 @@ bp = Blueprint('ui',__name__,url_prefix='/ui')
 Patient = PatientDAO()
 
 # patient information form
-@bp.route('/', methods=['POST','GET'])
+@bp.route('/', methods=['POST','GET'], endpoint='demographic')
 @login_required
 @read_write_perm
 def demographic():
     error = None
     if request.method == 'POST':
         try:
-            error = Patient.demographic()
+            patient = Patient.demographic()
         finally:
-            if error is None: return redirect(url_for('ui.screening'))
+            if error is None: return redirect(url_for('ui.screening', patient=patient))
             flash(error,'warning')
     return render_template('demographic.html')
 
 # cancer screening form
-@bp.route('/screening', methods=['POST','GET'])
+@bp.route('/screening/', defaults={'patient': Patient.patient}, methods=['POST','GET'])
+@bp.route('/screening/<patient>', methods=['POST','GET'])
 @login_required
 @read_write_perm
-def screening():
+def screening(patient):
+    Patient.set_patient = patient
     if request.method == 'POST':
-        patient_id = ''
         try:
             patient_id = Patient.screening()
         finally:
@@ -91,18 +92,31 @@ def view_records():
     return render_template('get_all.html')
 
 # update patient info
-@bp.route('/update/<form>')
+@bp.route('/update/<form>/<patient>')
 @login_required
 @read_write_perm
-def update_record(form):
-    pass
+def update_record(form, patient: dict):
+    if form == 'tumour':
+        return redirect('ui.tumour', nat_id=patient['national_id'])
+    elif form == 'screening':
+        return redirect('ui.screening', patient=patient)
+    elif form == 'treatment':
+        return redirect()
+    elif form == 'demographic':
+        return redirect()
 
 # update patient info
-@bp.route('/update/')
+@bp.route('/update/', methods=['POST','GET'])
 @login_required
 @read_write_perm
 def update_base():
-    pass
+    if request.method == 'POST':
+        patient_id = request.form['patient_id']
+        patient_form = request.form['patient_form']
+        patient = Patient.get_one_record(patient_id)
+        if patient:
+            return redirect(url_for('ui.update_record', form=patient_form, patient=patient))
+    return render_template('update.html')
 
 # review single patient
 @bp.route('/review/<patient_id>')

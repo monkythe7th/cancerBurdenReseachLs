@@ -6,7 +6,7 @@ Cancer Burden Research Project
 <h1>
     Lesotho Digital Cancer Registry System
 </h1>
-<h2>Source of Information</h2>
+<h2>Update Patient Info</h2>
 {% endblock %}
 {% block sidebar %}
 <div class="sidebar">
@@ -28,14 +28,22 @@ Cancer Burden Research Project
 {% endblock %}
 {% block content %}
 <section class="ui">
-    <form action="" method="post" class="form info__source--form">
-        <div class="form--div"><label for="">Institution / Hospital</label><input type="text" name="" id="" class="input"></div>
-        <div class="form--div"><label for="">Unit / Ward</label><input type="text" name="" id="" class="input"></div>
-        <div class="form--div"><label for="">Case Number</label><input type="text" name="" id="" class="input"></div>
-        <div class="form--div"><label for="">Date of Source</label><input type="date" name="" id="" class="input"></div>
-        <div class="form--div"><label for="">Laboratory</label><input type="text" name="" id="" class="input"></div>
-        <div class="form--div"><label for="">Lab Number</label><input type="text" name="" id="" class="input"></div>
-        <input type="submit" value="Next">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action="" method="post" class="form update__base--form">
+        <div class="form--div"><label for="patient_id">Patient National ID</label><input type="text" name="patient_id" id="patient_id"></div>
+        <div class="form--div"><label for="patient_form">Form to Update</label><select type="text" name="patient_form" id="patient_form">
+            <option value="demographic">Demographic</option>
+            <option value="screening">Screening</option>
+            <option value="tumour">Tumour</option>
+            <option value="treatment">Treatment</option>
+        </select></div>
+        <div class="form--div"><input type="submit" value="Search"></div>
     </form>
 </section>
 {% endblock %}

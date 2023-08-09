@@ -56,7 +56,7 @@ class PatientDAO:
         except:
             error = "not in database"
         
-        return error
+        return self.patient
 
     def screening(self):
         # previous screening
@@ -131,6 +131,9 @@ class PatientDAO:
     def get_one_record(self,nat_id=None):
         if self.patient: return self.patient
         return getter.read('patient',{'national_id':nat_id})
+
+    def set_patient(self, patient: dict) -> None:
+        self.patient = patient
 
     def post_record(self, nat_id):
         if nat_id and self.patient: 
