@@ -1,3 +1,4 @@
+import traceback
 from flask import Flask, Blueprint, render_template, request, redirect, url_for, g, flash, session
 from .patientDAO import *
 from .auth import *
@@ -10,11 +11,11 @@ Patient = PatientDAO()
 @bp.route('/', methods=['POST','GET'])
 @login_required
 @read_write_perm
-def patient_demographic():
+def demographic():
     error = None
     if request.method == 'POST':
         try:
-            error = Patient.patient_demographic()
+            error = Patient.demographic()
         finally:
             if error is None: return redirect(url_for('ui.screening'))
             flash(error,'warning')
@@ -34,10 +35,11 @@ def screening():
     return render_template('screening.html')
 
 # cancer tumour marker form
-@bp.route('/tumour', methods=['POST','GET'])
+@bp.route('/tumour/<nat_id>', methods=['POST','GET'])
 @login_required
 @read_write_perm
-def tumour():
+def tumour(nat_id):
+    g.patient = Patient.get_one_record(nat_id) if nat_id else redirect(url_for('ui.demographic'))
     if request.method == 'POST':
         try :
             Patient.tumour()
@@ -105,30 +107,34 @@ def update_base():
 # review single patient
 @bp.route('/review/<patient_id>')
 @login_required
-def review(patient_id = g.patient):
+def review(patient_id):
     patient = ''
+    message = None
     try:
         if patient_id:
             patient = Patient.get_one_record(patient_id)
         else:
             patient = Patient.get_one_record()
     except:
-        patient = 'No Record found'
+        patient = None
+        message = traceback.print_last()
     finally:
         g.patient = patient
-    return render_template('get_one.html')
+        flash(message)
+        return render_template('get_one.html')
 
 # posting form to database
-@bp.route('/post/<save>', methods=['POST'])
+@bp.route('/post/<save>/<nat_id>', methods=['POST','GET'])
 @login_required
-def post_record(save):
-    Patient.post_record()
+def post_record(save, nat_id):
+    if nat_id: Patient.post_record(nat_id)
     if save == 'home':
         return redirect(url_for('index'))
-    if Patient.patient['tumour_markers']:
-        return redirect(url_for('ui.view_records'))
-    else:
-        return redirect(url_for('ui.tumour'))
+    if save == 'continue':
+        if 'tumour_markers' not in Patient.patient.keys():
+            return redirect(url_for('ui.tumour',nat_id=nat_id))
+        else:
+            return redirect(url_for('ui.view_records'))
 
 # authentication ui dashboard
 @bp.route('auth/dashboard')

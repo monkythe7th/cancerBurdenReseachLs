@@ -9,11 +9,11 @@ class PatientDAO:
     def __init__(self) -> None:
         self.patient = {}
 
-    def patient_demographic(self):
+    def demographic(self):
         
         today = request.form['date']
         firstname = request.form['firstname']
-        surname = request.form['surname']
+        lastname = request.form['lastname']
         gender = request.form['gender']
         facility_id = request.form['facility__identification__number']
         national_id = request.form['national__identification__number']
@@ -32,7 +32,7 @@ class PatientDAO:
         data = {
             'input_date':today,
             'firstname':firstname,
-            'surname,':surname,
+            'lastname':lastname,
             'gender':gender,
             'facility_id':facility_id,
             'dob':dob,
@@ -130,9 +130,12 @@ class PatientDAO:
 
     def get_one_record(self,nat_id=None):
         if self.patient: return self.patient
-        return getter.read('patient',{'national_id',nat_id})
+        return getter.read('patient',{'national_id':nat_id})
 
-    def post_record(self):
-        patient = getter.read('patient',{'national_id',self.patient['national_id']})
-        if patient: return 'patient already exists'
-        create.create('patient', self.patient)
+    def post_record(self, nat_id):
+        if nat_id and self.patient: 
+            if self.patient['national_id'] == nat_id:
+                patient = getter.read('patient',{'national_id':nat_id})
+            if patient: return 'patient already exists'
+            create.create('patient', self.patient)
+        

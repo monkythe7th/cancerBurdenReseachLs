@@ -78,11 +78,19 @@ header img.logo {
 
 .ui {
     border-left: 1px solid #666;
-    height: 100%;
+    height: 80%;
     margin-left: 25%;
     overflow: scroll;
     position: relative;
-    top: 125px;
+    top: 19%;
+}
+
+.ui .patient--card {
+    width: 45%;
+    float: left;
+    border: 1px solid;
+    border-radius: 25px;
+    padding: 15px;
 }
 
 .form.auth--form {
@@ -183,4 +191,12 @@ input[type="submit"] {
     margin: 25px 100px;
     padding: 7.5px;
     width: 200px;
+}
+
+.ui .patients th,
+.ui .patients td {
+    width: 150px;
+    padding: 5px 7.5px;
+    border: 1px solid;
+    text-align: start;
 }

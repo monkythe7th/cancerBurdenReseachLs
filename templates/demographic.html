@@ -12,9 +12,9 @@ Cancer Burden Research Project
 <div class="sidebar">
     <ul class="breadcrumbs">
         <li><a href="{{ url_for('index') }}">Dashboard</a></li>
-        <li class="active"><a href="{{ url_for('ui.patient_demographic') }}">Patient info</a></li>
+        <li class="active"><a href="{{ url_for('ui.demographic') }}">Patient info</a></li>
         <li><a href="{{ url_for('ui.screening') }}">Screening</a></li>
-        <li><a href="{{ url_for('ui.tumour') }}">tumour markers</a></li>
+        {% if g.patient %} <li><a href="{{ url_for('ui.tumour', nat_id=g.patient['national_id']) }}">tumour markers</a></li> {% endif %}
         <li><a href="{{ url_for('ui.treatment') }}">treatment</a></li>
         <li><a href="{{ url_for('ui.source') }}">source of info</a></li>
         <li><a href="{{ url_for('ui.follow_up') }}">follow up</a></li>
@@ -40,7 +40,7 @@ Cancer Burden Research Project
     <form action="" method="post" class="demographic--form form">
         <div class="form--div"><label for="date">Date: </label><input required type="datetime-local" name="date" id="todays__date" pattern="\d{2}/\d{2}/\d{4}" min="1/1/2010" required  class="input"></div>
         <div class="form--div"><label for="firstname">Name: </label><input required type="text" name="firstname" id="firstname" class="input"></div>
-        <div class="form--div"><label for="surname">Surname: </label><input required type="text" name="surname" id="surname" class="input"></div>
+        <div class="form--div"><label for="lastname">Lastname: </label><input required type="text" name="lastname" id="lastname" class="input"></div>
         <div class="form--div"><label for="gender">Gender: </label><select name="gender" id="gender" class="input">
             <option value="default">Select One Option</option>
             <option value="male">Male</option>

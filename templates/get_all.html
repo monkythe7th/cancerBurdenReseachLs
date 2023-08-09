@@ -12,9 +12,9 @@ Cancer Burden Research Project
 <div class="sidebar">
     <ul class="breadcrumbs">
         <li><a href="{{ url_for('index') }}">Dashboard</a></li>
-        <li><a href="{{ url_for('ui.patient_demographic') }}">Patient info</a></li>
+        <li><a href="{{ url_for('ui.demographic') }}">Patient info</a></li>
         <li><a href="{{ url_for('ui.screening') }}">Screening</a></li>
-        <li><a href="{{ url_for('ui.tumour') }}">tumour markers</a></li>
+        {% if g.patient %} <li><a href="{{ url_for('ui.tumour', nat_id=g.patient['national_id']) }}">tumour markers</a></li> {% endif %}
         <li><a href="{{ url_for('ui.treatment') }}">treatment</a></li>
         <li><a href="{{ url_for('ui.source') }}">source of info</a></li>
         <li><a href="{{ url_for('ui.follow_up') }}">follow up</a></li>
@@ -24,10 +24,26 @@ Cancer Burden Research Project
 {% endblock %}
 {% block content %}
 <section class="ui">
-    <ul>
+    <table class="patients">
+        <tr class="table--header">
+            <th>National ID</th>
+            <th>Facility ID</th>
+            <th>Names</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Phone Number</th>
+        </tr>
         {% for patient in g.records %}
-        <li>{{ patient }}</li>
+        <!-- patient cards go here, -->
+        <tr class="patient">
+            <td class="patient--id"><a href="{{ url_for('ui.review',patient_id=patient['national_id']) }}">{{ patient["national_id"] }}</a></td>
+            <td class="patient--facility_id">{{ patient["demographic"]["facility_id"] }}</td>
+            <td class="patient--names">{{ patient["demographic"]["firstname"]~" "~patient["demographic"]["lastname"] }}</td>
+            <td class="patient--gender">{{ patient["demographic"]["gender"] }}</td>
+            <td class="patient--age">{{ patient["demographic"]["age"] }}</td>
+            <td class="patient--phone">{{ patient["demographic"]["phone"] }}</td>
+        </tr>
         {% endfor %}
-    </ul>
+    </table>
 </section>
 {% endblock %}

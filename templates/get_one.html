@@ -12,9 +12,13 @@ Cancer Burden Research Project
 <div class="sidebar">
     <ul class="breadcrumbs">
         <li><a href="{{ url_for('index') }}">Dashboard</a></li>
-        <li><a href="{{ url_for('ui.patient_demographic') }}">Patient info</a></li>
+        <li><a href="{{ url_for('ui.demographic') }}">Patient info</a></li>
         <li><a href="{{ url_for('ui.screening') }}">Screening</a></li>
-        <li><a href="{{ url_for('ui.tumour') }}">tumour markers</a></li>
+        {% if g.patient %} 
+        <li><a href="{{ url_for('ui.tumour', nat_id=g.patient['national_id']) }}">tumour markers</a></li> 
+        {% else %}
+        <li><a href="{{ url_for('ui.tumour', nat_id=None) }}">tumour markers</a></li>
+        {% endif %}
         <li><a href="{{ url_for('ui.treatment') }}">treatment</a></li>
         <li><a href="{{ url_for('ui.source') }}">source of info</a></li>
         <li><a href="{{ url_for('ui.follow_up') }}">follow up</a></li>
@@ -24,11 +28,11 @@ Cancer Burden Research Project
 {% endblock %}
 {% block content %}
 <section class="ui">
-    <!-- {{ g.patient }} -->
-    <div class="demographic">
+    {% if g.patient %}
+    <div class="demographic patient--card">
         <p>input date: {{ g.patient["demographic"]["input_date"] }}</p>
         <p>First Name: {{ g.patient["demographic"]["firstname"] }}</p>
-        <p>Surname: {{ g.patient["demographic"]["surname"] }}</p>
+        <p>Lastname: {{ g.patient["demographic"]["lastname"] }}</p>
         <p>Gender: {{ g.patient["demographic"]["gender"] }}</p>
         <p>Facility id: {{ g.patient["demographic"]["facility_id"] }}</p>
         <p>National id: {{ g.patient["national_id"] }}</p>
@@ -44,7 +48,7 @@ Cancer Burden Research Project
         <p>Next of Kin: {{ g.patient["demographic"]["next_of_kin"] }}</p>
         <p>Next of Kin Phone: {{ g.patient["demographic"]["next_of_kin_phone"] }}</p>
     </div>
-    <div class="screening_info">
+    <div class="screening_info patient--card">
         <p>Family Planning: {{ g.patient["screening"]["family_planning"] }}</p>
         <p>HTS: {{ g.patient["screening"]["hts"] }}</p>
         <p>HIV Test Results: {{ g.patient["screening"]["hiv_test_results"] }}</p>
@@ -59,9 +63,25 @@ Cancer Burden Research Project
 
     {% endif %}
     <div class="buttons">
+        <a href="{{ url_for('ui.post_record', save='home',nat_id=g.patient['national_id']) }}" class="button review--buttons">Save</a>
+        <a href="{{ url_for('ui.post_record', save='continue',nat_id=g.patient['national_id']) }}" class="button review--buttons">Save & Continue</a>
+        <a href="{{ url_for('ui.demographic') }}" class="button review--buttons">Edit</a>
+    </div>
+    {% else %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    {% endif %}
+
+    <!-- <div class="buttons">
         <button onclick="postRecord('home')" type="button">Save</button>
         <button onclick="postRecord('next')" type="button">Save & Continue</button>
         <button onclick="editRecord()" type="button">Edit</button>
-    </div>
+    </div> -->
+
 </section>
 {% endblock %}
