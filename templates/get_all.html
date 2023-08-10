@@ -12,7 +12,7 @@ Cancer Burden Research Project
 <div class="sidebar">
     <ul class="breadcrumbs">
         <li><a href="{{ url_for('index') }}">Dashboard</a></li>
-        <li class="active"><a href="{{ url_for('ui.demographic') }}">Patient info</a></li>
+        <li><a href="{{ url_for('ui.demographic') }}">Patient info</a></li>
         <li><a href="{{ url_for('ui.screening') }}">Screening</a></li>
         {% if g.patient %}
         <li><a href="{{ url_for('ui.tumour', nat_id=g.patient['national_id']) }}">tumour markers</a></li>
@@ -21,7 +21,7 @@ Cancer Burden Research Project
         <li><a href="{{ url_for('ui.follow_up') }}">follow up</a></li>
         <li><a href="{{ url_for('ui.review', patient_id=g.patient['national_id']) }}">review</a></li>
         {% else %}
-        <li><a href="{{ url_for('ui.review', patient_id='None') }}">review</a></li>
+        <li class="active"><a href="{{ url_for('ui.view_records') }}">View Patients</a></li>
         {% endif %}
     </ul>
 </div>

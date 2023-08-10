@@ -12,22 +12,22 @@ Cancer Burden Research Project
 <div class="sidebar">
     <ul class="breadcrumbs">
         <li><a href="{{ url_for('index') }}">Dashboard</a></li>
-        <li class="active"><a href="{{ url_for('ui.demographic') }}">Patient info</a></li>
+        <li><a href="{{ url_for('ui.demographic') }}">Patient info</a></li>
         <li><a href="{{ url_for('ui.screening') }}">Screening</a></li>
         {% if g.patient %}
         <li><a href="{{ url_for('ui.tumour', nat_id=g.patient['national_id']) }}">tumour markers</a></li>
         <li><a href="{{ url_for('ui.treatment') }}">treatment</a></li>
         <li><a href="{{ url_for('ui.source') }}">source of info</a></li>
         <li><a href="{{ url_for('ui.follow_up') }}">follow up</a></li>
-        <li><a href="{{ url_for('ui.review', patient_id=g.patient['national_id']) }}">review</a></li>
+        <li class="active"><a href="{{ url_for('ui.review', patient_id=g.patient['national_id']) }}">review</a></li>
         {% else %}
-        <li><a href="{{ url_for('ui.review', patient_id='None') }}">review</a></li>
+        <li class="active"><a href="{{ url_for('ui.view_records') }}">View Patients</a></li>
         {% endif %}
     </ul>
 </div>
 {% endblock %}
 {% block content %}
-<section class="ui">
+<section class="ui record--view">
     {% if g.patient %}
     <div class="demographic patient--card">
         <p>input date: {{ g.patient["demographic"]["input_date"] }}</p>
@@ -65,7 +65,7 @@ Cancer Burden Research Project
     <div class="buttons">
         <a href="{{ url_for('ui.post_record', save='home',nat_id=g.patient['national_id']) }}" class="button review--buttons">Save</a>
         <a href="{{ url_for('ui.post_record', save='continue',nat_id=g.patient['national_id']) }}" class="button review--buttons">Save & Continue</a>
-        <a href="{{ url_for('ui.demographic') }}" class="button review--buttons">Edit</a>
+        <a href="{{ url_for('ui.update_base') }}" class="button review--buttons">Edit</a>
     </div>
     {% else %}
         {% with messages = get_flashed_messages() %}

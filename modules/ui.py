@@ -16,23 +16,30 @@ def demographic():
     if request.method == 'POST':
         try:
             patient = Patient.demographic()
+            session['current_patient']=patient
         finally:
-            if error is None: return redirect(url_for('ui.screening', patient=patient))
+            if error is None: return redirect(url_for('ui.screening'))
             flash(error,'warning')
     return render_template('demographic.html')
 
 # cancer screening form
-@bp.route('/screening/', defaults={'patient': Patient.patient}, methods=['POST','GET'])
-@bp.route('/screening/<patient>', methods=['POST','GET'])
+@bp.route('/screening/', methods=['POST','GET'])
 @login_required
 @read_write_perm
-def screening(patient):
-    Patient.set_patient = patient
-    if request.method == 'POST':
-        try:
-            patient_id = Patient.screening()
-        finally:
-            return redirect(url_for('ui.review',patient_id=patient_id))
+def screening():
+    try:
+        Patient.set_patient(session['patient'])
+        if request.method == 'POST':
+            try:
+                patient_id = Patient.screening()
+            except:
+                Patient.set_patient(session['patient'])
+                patient_id = Patient.screening()
+            finally:
+                return redirect(url_for('ui.review',patient_id=patient_id))
+    except KeyError:
+        error = "patient not defined"
+        flash(error)
     return render_template('screening.html')
 
 # cancer tumour marker form
@@ -92,18 +99,20 @@ def view_records():
     return render_template('get_all.html')
 
 # update patient info
-@bp.route('/update/<form>/<patient>')
+@bp.route('/update/<form>/')
 @login_required
 @read_write_perm
-def update_record(form, patient: dict):
-    if form == 'tumour':
-        return redirect('ui.tumour', nat_id=patient['national_id'])
-    elif form == 'screening':
-        return redirect('ui.screening', patient=patient)
-    elif form == 'treatment':
-        return redirect()
-    elif form == 'demographic':
-        return redirect()
+def update_record(form):
+    if session['patient']:
+        patient = session['patient']
+        if form == 'tumour':
+            return redirect(url_for('ui.tumour', nat_id=patient['national_id']))
+        elif form == 'screening':
+            return redirect(url_for('ui.screening'))
+        elif form == 'treatment':
+            return redirect(url_for())
+        elif form == 'demographic':
+            return redirect(url_for())
 
 # update patient info
 @bp.route('/update/', methods=['POST','GET'])
@@ -115,7 +124,13 @@ def update_base():
         patient_form = request.form['patient_form']
         patient = Patient.get_one_record(patient_id)
         if patient:
-            return redirect(url_for('ui.update_record', form=patient_form, patient=patient))
+            session['patient'] = patient
+            return redirect(url_for('ui.update_record', form=patient_form))
+    try:
+        if session['current_patient']:
+            pass
+    except KeyError:
+        pass
     return render_template('update.html')
 
 # review single patient

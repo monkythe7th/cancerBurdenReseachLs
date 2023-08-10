@@ -193,6 +193,20 @@ input[type="submit"] {
     width: 200px;
 }
 
+.ui.record--view .buttons {
+    margin: 10px 20px;
+    float: left;
+}
+
+.ui.record--view .buttons .button.review--buttons {
+    display: block;
+    float: left;
+    padding: 5px 15px;
+    border-radius: 15px;
+    background-color: #eee;
+    margin: 2.5px;
+}
+
 .ui .patients th,
 .ui .patients td {
     width: 150px;
