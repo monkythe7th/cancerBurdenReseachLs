@@ -116,8 +116,8 @@ def update_record(form):
         elif form == 'demographic':
             return redirect(url_for('ui.update'))
 
-@bp.route('/update/r')
-def
+# @bp.route('/update/r')
+# def
 
 # update patient info
 @bp.route('/update/', methods=['POST','GET'])
