@@ -1,5 +1,4 @@
 from flask import Flask, render_template, redirect, url_for, g
-from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 from .modules import auth, ui, db_conn
 

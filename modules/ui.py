@@ -28,13 +28,15 @@ def demographic():
 @read_write_perm
 def screening():
     try:
-        Patient.set_patient(session['patient'])
+        if 'patient' in session.keys():
+            Patient.set_patient(session['patient'])
+        elif 'current_patient' in session.keys():
+            Patient.set_patient(session['current_patient'])
         if request.method == 'POST':
             try:
                 patient_id = Patient.screening()
             except:
-                Patient.set_patient(session['patient'])
-                patient_id = Patient.screening()
+                pass
             finally:
                 return redirect(url_for('ui.review',patient_id=patient_id))
     except KeyError:
@@ -103,16 +105,19 @@ def view_records():
 @login_required
 @read_write_perm
 def update_record(form):
-    if session['patient']:
+    if 'patient' in session.keys():
         patient = session['patient']
         if form == 'tumour':
             return redirect(url_for('ui.tumour', nat_id=patient['national_id']))
         elif form == 'screening':
             return redirect(url_for('ui.screening'))
         elif form == 'treatment':
-            return redirect(url_for())
+            return redirect(url_for('ui.treatment'))
         elif form == 'demographic':
-            return redirect(url_for())
+            return redirect(url_for('ui.update'))
+
+@bp.route('/update/r')
+def
 
 # update patient info
 @bp.route('/update/', methods=['POST','GET'])

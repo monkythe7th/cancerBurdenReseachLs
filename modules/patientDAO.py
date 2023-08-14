@@ -85,7 +85,12 @@ class PatientDAO:
         }
 
         try:
-            self.patient['screening'] = data
+            if 'screening' not in self.patient.keys():
+                self.patient['screening'] = data
+            elif self.patient['screening'] is dict:
+                self.patient['screening'] = [self.patient['screening'],data]
+            elif self.patient['screening'] is list:
+                self.patient['screening'].append(data)
         except:
             pass
         finally:
