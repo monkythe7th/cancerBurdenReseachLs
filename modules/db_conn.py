@@ -33,8 +33,8 @@ from werkzeug.security import generate_password_hash
 uri = "mongodb+srv://cluster0.7nocv.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority"
 # client = MongoClient(os.environ['noSQL_DB_CONN'])
 # client = MongoClient("mongodb://localhost:27017/?directConnection=true")
-# cert_file = 'modules/X509-cert-1923843719370881966.pem'
-cert_file = 'modules/X509-cert-5106636011077533725.pem'
+cert_file = 'modules/X509-cert-1923843719370881966.pem'
+# cert_file = 'modules/X509-cert-5106636011077533725.pem'
 client = MongoClient(uri,
                 tls=True,
                 tlsCertificateKeyFile=cert_file,

@@ -33,3 +33,17 @@ editRecord = () => {
         }
     })
 }
+
+$(document).ready(()=>{
+    $('#input__date').css('display','none')
+    if (window.location.pathname.includes('update/p'))
+        $('#national__identification__number').val(patientID).prop('disable',true);
+
+    if (window.location.pathname.includes('/update/')) {
+        if (!window.location.pathname.endsWith('update/')) {
+            let patient = window.location.pathname.substring(11)
+            console.log(patient)
+            $('#patient_id').val(patient)
+        }
+    }
+})

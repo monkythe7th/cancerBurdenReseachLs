@@ -50,6 +50,7 @@ def screening():
 @read_write_perm
 def tumour(nat_id):
     g.patient = Patient.get_one_record(nat_id) if nat_id else redirect(url_for('ui.demographic'))
+    session['current_patient'] = g.patient
     if request.method == 'POST':
         try :
             Patient.tumour()
@@ -62,36 +63,13 @@ def tumour(nat_id):
 @login_required
 @read_write_perm
 def treatment():
+
     if request.method == 'POST':
         try :
             Patient.treatment()
         finally:
-            return redirect(url_for('ui.source'))
+            return redirect(url_for('ui.review', patient_id=session.patient['national_id']))
     return render_template('treatment.html')
-
-# source of information form
-@bp.route('/source', methods=['POST','GET'])
-@login_required
-@read_write_perm
-def source():
-    if request.method == 'POST':
-        try :
-            Patient.source()
-        finally:
-            return redirect(url_for('ui.follow_up'))
-    return render_template('source_info.html')
-
-# follow up form
-@bp.route('/follow_up', methods=['POST','GET'])
-@login_required
-@read_write_perm
-def follow_up():
-    if request.method == 'POST':
-        try :
-            Patient.follow_up()
-        finally:
-            return redirect(url_for('ui.review'))
-    return render_template('followup.html')
 
 # view records, any one who has log in credentials can use this
 @bp.route('/view_records')
@@ -116,14 +94,25 @@ def update_record(form):
         elif form == 'demographic':
             return redirect(url_for('ui.update'))
 
-# @bp.route('/update/r')
-# def
+@bp.route('/update/p', methods=['POST','GET'])
+def update():
+    patient = session['patient']
+    if request.method == 'POST':
+        try:
+            Patient.update(patient)
+        except:
+            pass
+        finally:
+            return redirect(url_for('ui.review', patient_id=patient['national_id']))
+    return render_template('demographic.html')
 
 # update patient info
-@bp.route('/update/', methods=['POST','GET'])
+@bp.route('/update/', defaults={'nat_id':0}, methods=['POST','GET'])
+@bp.route('/update/<nat_id>', methods=['POST','GET'])
 @login_required
 @read_write_perm
-def update_base():
+def update_base(nat_id):
+    session['patient_id'] = nat_id
     if request.method == 'POST':
         patient_id = request.form['patient_id']
         patient_form = request.form['patient_form']

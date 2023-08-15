@@ -111,24 +111,45 @@ class PatientDAO:
         treatment_date = request.form['']
         pass
 
-    def source(self):
-        institution = request.form['']
-        ward = request.form['']
-        case_no = request.form['']
-        date_of_source = request.form['']
-        laboratory = request.form['']
-        lab_no = request.form['']
-        pass
+    def update(self,patient):
+        firstname = request.form['firstname']
+        lastname = request.form['lastname']
+        gender = request.form['gender']
+        facility_id = request.form['facility__identification__number']
+        dob = request.form['dob']
+        age = request.form['age']
+        physical_address = request.form['physical__address']
+        phone = request.form['phone']
+        level_of_education = request.form['level__of__education']
+        occupation = request.form['occupation']
+        marital_status = request.form['marital__status']
+        religion = request.form['religion']
+        no_of_children = request.form['number__of__children']
+        next_of_kin = request.form['nok']
+        next_of_kin = request.form['nok_lastname']
+        next_of_kin_phone = request.form['nok__phone']
 
-    def follow_up(self):
-        date_of_last_contact = request.form['']
-        state_of_last_contact = request.form['']
-        cause_of_death = request.form['']
-        refered_from = request.form['']
-        ref_no1 = request.form['']
-        refered_to = request.form['']
-        ref_no2 = request.form['']
-        pass
+        data = {
+            'firstname':firstname,
+            'lastname':lastname,
+            'gender':gender,
+            'facility_id':facility_id,
+            'dob':dob,
+            'age':age,
+            'physical_address':physical_address,
+            'phone':phone,
+            'level_of_education':level_of_education,
+            'occupation':occupation,
+            'marital_status':marital_status,
+            'religion':religion,
+            'no_of_children':no_of_children,
+            'next_of_kin':next_of_kin,
+            'next_of_kin_phone':next_of_kin_phone
+        }
+
+        self.patient = patient
+        self.patient['demographic'] = data
+        return self.patient
 
     def get_records(self):
         return getter.get_all('patient')

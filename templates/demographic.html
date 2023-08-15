@@ -17,8 +17,7 @@ Cancer Burden Research Project
         {% if g.patient %} 
         <li><a href="{{ url_for('ui.tumour', nat_id=g.patient['national_id']) }}">tumour markers</a></li>
         <li><a href="{{ url_for('ui.treatment') }}">treatment</a></li>
-        <li><a href="{{ url_for('ui.source') }}">source of info</a></li>
-        <li><a href="{{ url_for('ui.follow_up') }}">follow up</a></li>
+        
         <li><a href="{{ url_for('ui.review', patient_id=g.patient['national_id']) }}">review</a></li>
         {% else %}
         <li><a href="{{ url_for('ui.view_records') }}">View Patients</a></li>
@@ -38,7 +37,7 @@ Cancer Burden Research Project
         {% endif %}
     {% endwith %}
     <form action="" method="post" class="demographic--form form">
-        <div class="form--div"><label for="date">Date: </label><input required type="datetime-local" name="date" id="todays__date" pattern="\d{2}/\d{2}/\d{4}" min="1/1/2010" required  class="input"></div>
+        <div class="form--div" id="input__date"><label for="date">Date: </label><input required type="datetime-local" name="date" id="todays__date" pattern="\d{2}/\d{2}/\d{4}" min="1/1/2010" required  class="input"></div>
         <div class="form--div"><label for="firstname">Name: </label><input required type="text" name="firstname" id="firstname" class="input"></div>
         <div class="form--div"><label for="lastname">Lastname: </label><input required type="text" name="lastname" id="lastname" class="input"></div>
         <div class="form--div"><label for="gender">Gender: </label><select name="gender" id="gender" class="input">
@@ -72,6 +71,7 @@ Cancer Burden Research Project
         <div class="form--div"><label for="number__of__children">Number of Children: </label><input required type="text" name="number__of__children"
             id="number__of__children" class="input"></div>
         <div class="form--div"><label for="nok">Next of Kin Name: </label><input required type="text" name="nok" id="nok" class="input"></div>
+        <div class="form--div"><label for="nok_lastname">Next of Kin Last Name: </label><input required type="text" name="nok_lastname" id="nok_lastname" class="input"></div>
         <div class="form--div"><label for="nok__phone">Next of Kin Phone number: </label><input required type="tel" name="nok__phone" id="nok__phone" pattern="[0-9]{8}" class="input" placehonder="5912 3456"></div>
         <input type="submit" value="Next">
     </form>
