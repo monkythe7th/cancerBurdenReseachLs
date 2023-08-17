@@ -44,6 +44,7 @@ header img.logo {
     position: relative;
     text-align: center;
     top: 125px;
+    width: 60%;
 }
 
 
@@ -170,10 +171,10 @@ header img.logo {
     border-radius: 25px;
     display: inline-block;
     height: 100px;
-    margin: 5px auto;
-    padding: 5px;
+    margin: 10px;
+    padding: 10px;
     text-align: center;
-    width: 250px;
+    width: 200px;
     color: #000;
     text-decoration: none;
 }

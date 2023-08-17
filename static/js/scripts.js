@@ -4,10 +4,19 @@ function toggleDisabled(flag) {
     else Array.prototype.forEach.call(cls, (item) => item.style.display = 'None');
 }
 
-function calcAge(params) {
-    let dob = document.getElementById('dob');
-    let age = document.getElementById('age');
+calcAge = (dob) => {
+    let age = 0;
+    let today = new Date();
     // ToDo: calculate the age or date of birth.
+    age = (today - new Date(dob)) / 3.154e+10;
+    return age.toFixed(0);
+}
+
+calcDob = (age) => {
+    let dob = 0;
+    let today = new Date();
+    dob = new Date(today - age * 3.154e+10)
+    return dob
 }
 
 postRecord = (page) => {
@@ -35,9 +44,10 @@ editRecord = () => {
 }
 
 $(document).ready(()=>{
-    $('#input__date').css('display','none')
-    if (window.location.pathname.includes('update/p'))
+    if (window.location.pathname.includes('update/p')) {
+        $('#input__date').css('display','none')
         $('#national__identification__number').val(patientID).prop('disable',true);
+    }
 
     if (window.location.pathname.includes('/update/')) {
         if (!window.location.pathname.endsWith('update/')) {
@@ -46,4 +56,14 @@ $(document).ready(()=>{
             $('#patient_id').val(patient)
         }
     }
+
+    $('#dob').change(()=>{
+        let dob = $('#dob').val();
+        $('#age').val(calcAge(dob))
+    });
+    $('#age').change(()=>{
+        if (condition) {
+            
+        }
+    });
 })
