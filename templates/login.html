@@ -17,8 +17,14 @@ Cancer Burden Research Project
         {% endif %}
     {% endwith %}
     <form action="" method="post" class="form auth--form">
-        <div class="form--div"><label for="username">user: </label><input type="text" class="auth--input" name="username"></div>
-        <div class="form--div"><label for="password">Password: </label><input type="password" class="auth--input" name="password"></div>
+        <div class="form--div">
+            <label for="username">user: </label>
+            <input type="text" class="auth--input" id="username" name="username"></div>
+        <div class="form--div">
+            <label for="password">Password: </label>
+            <input type="password" class="auth--input" id="password" name="password">
+            <img src="{{ url_for('static',filename='imgs/eye-regular.svg') }}" alt="cersorship--eye" id="eye">
+        </div>
         <input type="submit" value="login">
     </form>
 </section>

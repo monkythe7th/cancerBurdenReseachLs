@@ -48,8 +48,12 @@
     const analytics = getAnalytics(app);
 </script>
 <script>
-    var patientID = {{ session['patient_id'] }};
-    // 
+    
+    var eye = document.getElementById('eye').className === 'showen' ? "{{ url_for('static', filename = 'imgs/eye-slash-regular.svg') }}" : "{{ url_for('static', filename = 'imgs/eye-regular.svg') }}";;
+    console.log(eye)
+    if (!window.location.pathname.includes('auth/login')) {
+        var patientID = "{{ session['patient_id'] }}";;
+    };
 </script>
 <script src="{{ url_for('static',filename='js/scripts.js') }}"></script>
 </body>

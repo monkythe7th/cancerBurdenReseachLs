@@ -62,8 +62,17 @@ $(document).ready(()=>{
         $('#age').val(calcAge(dob))
     });
     $('#age').change(()=>{
-        if (condition) {
-            
+        let age = $('#age').val()
+        if (age>0) {
+            $('#dob').val(calcDob(age))
         }
     });
+
+    $('#eye').hover(() => {
+        $(this).toggleClass('showen').attr('src',eye)
+        let type = $('#password').attr('type') === 'password' ? 'text' : 'password';
+        $('#password').attr('type', type)
+    })
+
+
 })
