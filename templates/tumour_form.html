@@ -30,41 +30,41 @@ Cancer Burden Research Project
     <form action="" method="post" class="tumour__markers--form form">
         <div class="form--div"><label for="incidence__date">Date of incidence</label><input type="datetime-local" class="input" pattern="\d{2}/\d{2}/\d{4}" min="1/1/2010" required id="incidence__date" name="incidence__date"></div>
         <div class="form--div">
-            <label for="diagnosis">Basis of Diagnosis</label>
-            <select class="input" name="">
-                <option value="">Death Certificate Only</option>
-                <option value="">Clinical Only</option>
-                <option value="">Clinical Investigation(x-ray, endoscopy, mri, ct/ur scan)</option>
-                <option value="">Specific Tumour Markers</option>
-                <option value="">Cytology/Haematology</option>
-                <option value="">Histology of Metastatis</option>
-                <option value="">histology of Primary</option>
-                <option value="">Unknown</option>
+            <label for="diagnosis_base">Basis of Diagnosis</label>
+            <select class="input" name="diagnosis_base" id="diagnosis_base">
+                <option value="death certificate">Death Certificate Only</option>
+                <option value="clinical only">Clinical Only</option>
+                <option value="clinical investigation">Clinical Investigation(x-ray, endoscopy, mri, ct/ur scan)</option>
+                <option value="specific tumour markers">Specific Tumour Markers</option>
+                <option value="cytology/haematology">Cytology/Haematology</option>
+                <option value="hystology of metastatis">Histology of Metastatis</option>
+                <option value="histology of primary">Histology of Primary</option>
+                <option value="unknown">Unknown</option>
             </select>
         </div>
         <div class="form--div">
-            <label for="">Primary Site of Tumour / Topography</label>
-            <select name="" id="" class="input">
-                <option value=""></option>
-            </select>
-        </div>
-        <div class="form--div">
-            <label for="">Morphology</label>
-            <select name="" id="" class="input">
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
+            <label for="topography">Primary Site of Tumour / Topography</label>
+            <select name="topography id="topography" class="input">
                 <option value=""></option>
             </select>
         </div>
         <div class="form--div">
-            <label for="">Laterality</label>
-            <select name="" id="" class="input">
+            <label for="morphology">Morphology</label>
+            <select name="morphology" id="morphology" class="input">
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form--div">
+            <label for="laterality">Laterality</label>
+            <select name="laterality" id="laterality" class="input">
                 <option value=""></option>
                 <option value=""></option>
                 <option value=""></option>
@@ -73,8 +73,8 @@ Cancer Burden Research Project
             </select>
         </div>
         <div class="form--div full__width">
-            <label for="">Stage</label>
-            <input type="text" class="input" name="">
+            <label for="stage">Stage</label>
+            <input type="text" class="input" name="stage" id="stage">
             <label class="radio__check--label" for="">T</label><input type="checkbox" name="" id="">
             <label class="radio__check--label" for="">N</label><input type="checkbox" name="" id="">
             <label class="radio__check--label" for="">M</label><input type="checkbox" name="" id="">

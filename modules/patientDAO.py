@@ -97,14 +97,26 @@ class PatientDAO:
             return self.patient['national_id']
 
     def tumour(self):
-        incidence_date = request.form['']
-        basis_of_diagnosis = request.form['']
-        topography = request.form['']
-        morphology = request.form['']
-        laterlity = request.form['']
-        stage = request.form['']
+        incidence_date = request.form['incidence__date']
+        basis_of_diagnosis = request.form['diagnosis_base']
+        topography = request.form['topography']
+        morphology = request.form['morphology']
+        laterlity = request.form['laterality']
+        stage = request.form['stage']
 
-        pass
+        data = {
+            'incidence_date': incidence_date,
+            'basis_of_diagnosis': basis_of_diagnosis,
+            'topography': topography,
+            'morphology': morphology,
+            'laterlity': laterlity,
+            'stage': stage
+        }
+
+        try:
+            self.patient['tumour_marker'] = data
+        except:
+            return 'error'
 
     def treatment(self):
         treatment_type = request.form['']

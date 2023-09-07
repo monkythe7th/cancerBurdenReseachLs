@@ -58,9 +58,18 @@ Cancer Burden Research Project
         <p>Referal: {{ g.patient["screening"]["referal"] }}</p>
         <p>Next Visit: {{ g.patient["screening"]["next_visit"] }}</p>
     </div>
-    {% if g.patient['tumour_markers'] %}
-
+    {% with tumour_markers = g.patient['tumour_markers'] %}
+    {% if tumour_markers %}
+    <div class="tumour_markers patient--card">
+        <p>incidence date: {{ tumour_markers['incidence_date'] }}</p>
+        <p>basis of diagnistics: {{ tumour_markers['basis_of_diagnosis'] }}</p>
+        <p>topography: {{ tumour_markers['topography'] }}</p>
+        <p>morphology: {{ tumour_markers['morphology'] }}</p>
+        <p>laterality: {{ tumour_markers['laterality'] }}</p>
+        <p>stage: {{ tumour_markers['stage'] }}</p>
+    </div>
     {% endif %}
+    {% endwith %}
     <div class="buttons">
         <a href="{{ url_for('ui.post_record', save='home',nat_id=g.patient['national_id']) }}" class="button review--buttons">Save</a>
         <a href="{{ url_for('ui.post_record', save='continue',nat_id=g.patient['national_id']) }}" class="button review--buttons">Save & Continue</a>

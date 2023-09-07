@@ -63,12 +63,12 @@ def tumour(nat_id):
 @login_required
 @read_write_perm
 def treatment():
-
+    g.patient = session['current_patient']
     if request.method == 'POST':
         try :
             Patient.treatment()
         finally:
-            return redirect(url_for('ui.review', patient_id=session.patient['national_id']))
+            return redirect(url_for('ui.review', patient_id=session['patient']['national_id']))
     return render_template('treatment.html')
 
 # view records, any one who has log in credentials can use this
@@ -143,6 +143,7 @@ def review(patient_id):
         message = traceback.print_last()
     finally:
         g.patient = patient
+        session.patient = patient
         flash(message)
         return render_template('get_one.html')
 
