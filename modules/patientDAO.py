@@ -1,4 +1,5 @@
 # from mysql import connector
+import traceback
 from flask import request
 from ..api import create, read as getter, update, delete
 # from ..modules import sqlQueries
@@ -6,7 +7,7 @@ from ..api import create, read as getter, update, delete
 
 class PatientDAO:
 
-    def __init__(self) -> None:
+    def __init__(self):
         self.patient = {}
 
     def demographic(self):
@@ -55,12 +56,12 @@ class PatientDAO:
             self.patient['demographic'] = data
         except:
             error = "not in database"
-        
+            return error
+        # raise Exception
+        print('object created')
         return self.patient
 
     def screening(self):
-        # previous screening
-        
         # current screening
         family_planning = request.form['family__planning']
         hts = request.form['hts__offered']
@@ -69,6 +70,7 @@ class PatientDAO:
         screening_type = request.form['screening__type']
         screening_method = request.form['screening__methods']
         screening_results = request.form['screening__results']
+        results = request.form['results']
         referal = request.form['referal']
         next_visit = request.form['next__visit']
         
@@ -80,21 +82,19 @@ class PatientDAO:
             'screening_type':screening_type,
             'screening_method':screening_method,
             'screening_results':screening_results,
+            'results':results,
             'referal':referal,
             'next_visit':next_visit
         }
 
-        try:
-            if 'screening' not in self.patient.keys():
-                self.patient['screening'] = [data]
-            elif self.patient['screening'] is dict:
-                self.patient['screening'] = [self.patient['screening'],data]
-            elif self.patient['screening'] is list:
+        try:       
+            if 'screening' in self.patient:
                 self.patient['screening'].append(data)
+            else:
+                self.patient['screening'] = [data]
         except:
-            pass
-        finally:
-            return self.patient['national_id']
+            return traceback.print_last()
+        return self.patient
 
     def tumour(self):
         incidence_date = request.form['incidence__date']

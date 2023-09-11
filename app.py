@@ -6,7 +6,8 @@ def create_app():
     app = Flask(__name__)
     # db = SQLAlchemy()
     app.config.from_mapping(
-        SECRET_KEY='dev',
+        SECRET_KEY='d118863ac2e82f7e0792c79b830d23e15d873912a44a69425d46c5ed7ac3c069',
+        SESSION_PERMANENT=False,
         SESSION_TYPE='filesystem'
     )
     Session(app)

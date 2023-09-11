@@ -8,14 +8,16 @@ calcAge = (dob) => {
     let age = 0;
     let today = new Date();
     // ToDo: calculate the age or date of birth.
-    age = (today - new Date(dob)) / 3.154e+10;
+    age = (today.getFullYear() - new Date(dob).getFullYear());
     return age.toFixed(0);
 }
 
 calcDob = (age) => {
-    let dob = 0;
-    let today = new Date();
-    dob = new Date(today - age * 3.154e+10)
+    let dob = "";
+    let year = new Date().getFullYear() - age;
+    let date = new Date(year,0)
+    console.log(date)
+    dob = `${date.getFullYear()}-0${date.getMonth()+1}-0${date.getDate()}`
     return dob
 }
 

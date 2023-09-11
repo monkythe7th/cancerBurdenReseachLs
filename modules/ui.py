@@ -8,18 +8,26 @@ bp = Blueprint('ui',__name__,url_prefix='/ui')
 Patient = PatientDAO()
 
 # patient information form
-@bp.route('/', methods=['POST','GET'], endpoint='demographic')
+@bp.route('/', methods=['POST', 'GET'])
 @login_required
 @read_write_perm
 def demographic():
     error = None
+    patient = None
     if request.method == 'POST':
         try:
             patient = Patient.demographic()
-            session['current_patient']=patient
-        finally:
-            if error is None: return redirect(url_for('ui.screening'))
-            flash(error,'warning')
+            if type(patient) is dict:
+                session['current_patient'] = patient
+                # raise KeyError
+                g.patient = patient
+            else:
+                error = patient
+        except:
+            error = traceback.print_last()
+        
+        if error is None: return redirect(url_for('ui.screening'))
+        flash(error,'warning')
     return render_template('demographic.html')
 
 # cancer screening form
@@ -27,18 +35,24 @@ def demographic():
 @login_required
 @read_write_perm
 def screening():
+    error = None
     try:
-        if 'patient' in session.keys():
-            Patient.set_patient(session['patient'])
-        elif 'current_patient' in session.keys():
+        if 'current_patient' in session.keys():
             Patient.set_patient(session['current_patient'])
+        elif 'patient' in g:
+            Patient.set_patient(g.patient)
         if request.method == 'POST':
             try:
-                patient_id = Patient.screening()
+                patient = Patient.screening()
             except:
+                error = traceback.print_last()
                 pass
             finally:
-                return redirect(url_for('ui.review',patient_id=patient_id))
+                if error is None:
+                    patient_id = patient['national_id']
+                    return redirect(url_for('ui.review',patient_id=patient_id))
+                else:
+                    flash(error)
     except KeyError:
         error = "patient not defined"
         flash(error)

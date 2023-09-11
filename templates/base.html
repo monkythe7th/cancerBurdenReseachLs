@@ -24,35 +24,20 @@
     <!-- <p>Unicons by <a href="https://iconscout.com/">IconScout</a></p> -->
 </footer>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-        apiKey: "AIzaSyCP1VttWQJCxu9anC-QRcV1d2w6y8MjO-s",
-        authDomain: "cancer-burden-research.firebaseapp.com",
-        projectId: "cancer-burden-research",
-        storageBucket: "cancer-burden-research.appspot.com",
-        messagingSenderId: "374591854606",
-        appId: "1:374591854606:web:907af662119af99f8d045f",
-        measurementId: "G-BSZKEJV8RE"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-</script>
 <script>
-    
-    var eye = document.getElementById('eye').className === 'showen' ? "{{ url_for('static', filename = 'imgs/eye-slash-regular.svg') }}" : "{{ url_for('static', filename = 'imgs/eye-regular.svg') }}";;
-    console.log(eye)
-    if (!window.location.pathname.includes('auth/login')) {
-        var patientID = "{{ session['patient_id'] }}";;
+    if (window.location.pathname.includes('auth/login')) {
+        var eye = (document.getElementById('eye').className === 'showen') ? "{{ url_for('static', filename = 'imgs/eye-slash-regular.svg') }}" : "{{ url_for('static', filename = 'imgs/eye-regular.svg') }}";;
+        console.log(eye)
+    }else{
+        console.log("{{ g.patient }}")
+        {% if 'current_patient' in session.keys() %}
+        var patientID = "{{ session['current_patient']['national_id'] }}";;
+        console.log("{{ session['current_patient'] }}")
+        {% else %}
+        console.log("no patient yet")
+        {% endif %}
+        console.log("{{ session.keys() }}")
+
     };
 </script>
 <script src="{{ url_for('static',filename='js/scripts.js') }}"></script>
