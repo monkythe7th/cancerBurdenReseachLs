@@ -65,11 +65,18 @@ def screening():
 def tumour(nat_id):
     g.patient = Patient.get_one_record(nat_id) if nat_id else redirect(url_for('ui.demographic'))
     session['current_patient'] = g.patient
+    error = None
+    patient = g.patient
     if request.method == 'POST':
         try :
-            Patient.tumour()
+            patient = Patient.tumour()
+        except:
+            error = traceback.print_last()
         finally:
-            return redirect(url_for('ui.treatment'))
+            if error is None:
+                session['current_patient'] = patient
+                return redirect(url_for('ui.treatment'))
+            flash(error)
     return render_template('tumour_form.html')
 
 # recommended treatment form
@@ -77,12 +84,18 @@ def tumour(nat_id):
 @login_required
 @read_write_perm
 def treatment():
-    g.patient = session['current_patient']
+    patient = session['current_patient']
+    error = None
     if request.method == 'POST':
         try :
-            Patient.treatment()
+            patient = Patient.treatment()
+        except:
+            error = traceback.print_last()
         finally:
-            return redirect(url_for('ui.review', patient_id=session['patient']['national_id']))
+            if error is None:
+                session['current_patient'] = patient
+                return redirect(url_for('ui.review', patient_id=patient['national_id']))
+            flash(error)
     return render_template('treatment.html')
 
 # view records, any one who has log in credentials can use this
@@ -132,11 +145,11 @@ def update_base(nat_id):
         patient_form = request.form['patient_form']
         patient = Patient.get_one_record(patient_id)
         if patient:
-            session['patient'] = patient
+            session['current_patient'] = patient
             return redirect(url_for('ui.update_record', form=patient_form))
     try:
         if session['current_patient']:
-            pass
+            session['patient_id'] = session['current_patient']['national_id']
     except KeyError:
         pass
     return render_template('update.html')

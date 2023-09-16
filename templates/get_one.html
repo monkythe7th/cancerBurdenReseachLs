@@ -47,17 +47,19 @@ Cancer Burden Research Project
         <p>Next of Kin: {{ g.patient["demographic"]["next_of_kin"] }}</p>
         <p>Next of Kin Phone: {{ g.patient["demographic"]["next_of_kin_phone"] }}</p>
     </div>
+    {% for screening in g.patient["screening"] %}
     <div class="screening_info patient--card">
-        <p>Family Planning: {{ g.patient["screening"]["family_planning"] }}</p>
-        <p>HTS: {{ g.patient["screening"]["hts"] }}</p>
-        <p>HIV Test Results: {{ g.patient["screening"]["hiv_test_results"] }}</p>
-        <p>Purpose of Visit: {{ g.patient["screening"]["purpose_of_visit"] }}</p>
-        <p>Screening Type: {{ g.patient["screening"]["screening_type"] }}</p>
-        <p>Screening Methods: {{ g.patient["screening"]["screening_method"] }}</p>
-        <p>Screening Results: {{ g.patient["screening"]["screening_results"] }}</p>
-        <p>Referal: {{ g.patient["screening"]["referal"] }}</p>
-        <p>Next Visit: {{ g.patient["screening"]["next_visit"] }}</p>
+        <p>Family Planning: {{ screening["family_planning"] }}</p>
+        <p>HTS: {{ screening["hts"] }}</p>
+        <p>HIV Test Results: {{ screening["hiv_test_results"] }}</p>
+        <p>Purpose of Visit: {{ screening["purpose_of_visit"] }}</p>
+        <p>Screening Type: {{ screening["screening_type"] }}</p>
+        <p>Screening Methods: {{ screening["screening_method"] }}</p>
+        <p>Screening Results: {{ screening["screening_results"] }}</p>
+        <p>Referal: {{ screening["referal"] }}</p>
+        <p>Next Visit: {{ screening["next_visit"] }}</p>
     </div>
+    {% endfor %}
     {% with tumour_markers = g.patient['tumour_markers'] %}
     {% if tumour_markers %}
     <div class="tumour_markers patient--card">

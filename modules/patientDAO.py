@@ -117,6 +117,7 @@ class PatientDAO:
             self.patient['tumour_marker'] = data
         except:
             return 'error'
+        return self.patient
 
     def treatment(self):
         treatment_type = request.form['']
