@@ -35,6 +35,8 @@ header img.logo {
 }
 
 #main {
+    position:relative;
+    top:135px;
     height: 100%;
     width: 100%;
 }

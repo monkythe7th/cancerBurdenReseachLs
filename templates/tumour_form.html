@@ -32,6 +32,7 @@ Cancer Burden Research Project
         <div class="form--div">
             <label for="diagnosis_base">Basis of Diagnosis</label>
             <select class="input" name="diagnosis_base" id="diagnosis_base">
+                <option value="default"></option>
                 <option value="death certificate">Death Certificate Only</option>
                 <option value="clinical only">Clinical Only</option>
                 <option value="clinical investigation">Clinical Investigation(x-ray, endoscopy, mri, ct/ur scan)</option>
@@ -45,31 +46,85 @@ Cancer Burden Research Project
         <div class="form--div">
             <label for="topography">Primary Site of Tumour / Topography</label>
             <select name="topography id="topography" class="input">
-                <option value=""></option>
+                <option value="default"></option>
+                <option value="head_and_neck">Head & Neck</option>
+                <option value="breast">Breast</option>
+                <option value="chest">Chest</option>
+                <option value="skin">Skin</option>
+                <option value="lip">Lip</option>
+                <option value="tongue">Base of Tongue</option>
+                <option value="gum">Gum</option>
+                <option value="floor_of_mouth">Floor of Mouth</option>
+                <option value="palate">Palate</option>
+                <option value="salivary_gland">Salivary Gland</option>
+                <option value="tonsil">Tonsil</option>
+                <option value="oropharynx">Oropharynx</option>
+                <option value="nasopharynx">Nasopharynx</option>
+                <option value="pyriform_sinus">Pyriform Sinus</option>
+                <option value="hypopharynx">Hypopharynx</option>
+                <option value="esophagus">Esophagus</option>
+                <option value="stomach">Stomach</option>
+                <option value="small_intestine">Small Intestine</option>
+                <option value="colon">Colon</option>
+                <option value="rectum">Rectum</option>
+                <option value="anus">Anus</option>
+                <option value="liver">Liver</option>
+                <option value="gallbladder">Gallbladder</option>
+                <option value="pancreas">Pancreas</option>
+                <option value="nasal_cavity">Nasal Cavity</option>
+                <option value="middle_ear">Middle Ear</option>
+                <option value="larynx">Larynx</option>
+                <option value="trachea">Trachea</option>
+                <option value="lung">Lung</option>
+                <option value="thymus">Thymus</option>
+                <option value="heart">Heart</option>
+                <option value="bones">Bones</option>
+                <option value="joints">Joints</option>
+                <option value="cartilage">Cartilage</option>
+                <option value="hematopoietic_reticuloendothelial_system">HEMATOPOIETIC AND RETICULOENDOTHELIAL SYSTEMS</option>
+                <option value="vulva">Vulva</option>
+                <option value="vagina">Vagina</option>
+                <option value="cervix">Cervix</option>
+                <option value="uterus">Uterus</option>
+                <option value="ovary">Ovary</option>
+                <option value="placenta">Placenta</option>
+                <option value="penis">Penis</option>
+                <option value="prostate">Prostate Gland</option>
+                <option value="testies">Testies</option>
+                <option value="kidney">Kidneys</option>
+                <option value="bladder">Bladder</option>
+                <option value="ureter">Ureter</option>
+                <option value="eye">eye</option>
+                <option value="meninges">Meninges</option>
+                <option value="brain">Brain</option>
+                <option value="spine">Spinal cord</option>
+                <option value="thyroid">thyroid Glands</option>
+                <option value="adrenal">Adrenal Glands</option>
+                <option value="lymph_nodes">Lymph Nodes</option>
+                <option value="unknowen">Unknown Primary Site</option>
             </select>
         </div>
         <div class="form--div">
             <label for="morphology">Morphology</label>
             <select name="morphology" id="morphology" class="input">
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
+                <option value="default"></option>
+                <option value="malignant"></option>
+                <option value="small_cell"></option>
+                <option value="giant_cell"></option>
+                <option value="spindal_cell"></option>
+                <option value="clear_cell"></option>
+                <option value="carcinoma"></option>
+                <option value="neoplasm"></option>
             </select>
         </div>
         <div class="form--div">
-            <label for="laterality">Laterality</label>
-            <select name="laterality" id="laterality" class="input">
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
+            <label for="behaviour">Behaviour</label>
+            <select name="behaviour" id="behaviour" class="input">
+                <option value="default"></option>
+                <option value="benign">Benign</option>
+                <option value="in_situ">In Situ</option>
+                <option value="malignant">Malignant</option>
+                <option value="uncertain">Uncertain</option>
             </select>
         </div>
         <div class="form--div full__width">

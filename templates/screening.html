@@ -49,7 +49,7 @@ Cancer Burden Research Project
             </select>
         </div>
         <div class="form--div">
-            <label for="hts__offered">HTS Offered</label><input type="text" name="hts__offered" id="hts__offered" class="input screening--input ">
+            <label for="hts__offered">HTS Offered</label><input type="checkbox" name="hts__offered" id="hts__offered" class="input screening--input ">
         </div>
         <div class="form--div">
             <label for="hiv__results">HIV Status</label><select name="hiv__results" id="hiv__results" class="input screening--input ">
@@ -61,14 +61,18 @@ Cancer Burden Research Project
             </select>
         </div>
         <div class="form--div">
-            <label for="purpose__visit">Purpose of Visit</label><input type="text" name="purpose__visit" id="purpose__visit" class="input screening--input ">
+            <label for="purpose__visit">Purpose of Visit</label><select type="text" name="purpose__visit" id="purpose__visit" class="input screening--input ">
+                <option value="default">Select One Option</option>
+                <option value="new_patient_screening">New Patient for Screening</option>
+                <option value="Patient_followup">Patient for Followup</option>
+            </select>
         </div>
         <div class="form--div">
             <label for="screening__type">Type of Screening</label><input type="text" name="screening__type" id="screening__type" class="input screening--input ">
         </div>
         <div class="form--div">
             <label for="screening__methods">Method of Screening</label><select name="screening__methods" id="screening__methods" class="input screening--input ">
-                <option value="default">Select OneOption</option>
+                <option value="default">Select One Option</option>
                 <option value="mamogram">Mamogram</option>
                 <option value="hpv">HPV Test</option>
                 <option value="pap_smear">Pap Smear</option>

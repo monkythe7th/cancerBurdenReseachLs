@@ -101,7 +101,7 @@ class PatientDAO:
         basis_of_diagnosis = request.form['diagnosis_base']
         topography = request.form['topography']
         morphology = request.form['morphology']
-        laterlity = request.form['laterality']
+        behaviour = request.form['behaviour']
         stage = request.form['stage']
 
         data = {
@@ -109,7 +109,7 @@ class PatientDAO:
             'basis_of_diagnosis': basis_of_diagnosis,
             'topography': topography,
             'morphology': morphology,
-            'laterlity': laterlity,
+            'behaviour': behaviour,
             'stage': stage
         }
 
@@ -120,9 +120,19 @@ class PatientDAO:
         return self.patient
 
     def treatment(self):
-        treatment_type = request.form['']
-        treatment_date = request.form['']
-        pass
+        treatment_type = request.form['treatment_type']
+        treatment_date = request.form['treatment_date']
+        
+        data = {
+            'treatment_type':treatment_type,
+            'treatment_date':treatment_date
+        }
+
+        try:
+            self.patient['treatment'] = data
+        except:
+            return 'error'
+        return self.patient
 
     def update(self,patient):
         firstname = request.form['firstname']

@@ -15,4 +15,4 @@ COPY . .
 # By default, listen to port 5000
 EXPOSE 5000/tcp
 
-CMD ["flask","run","--debug"]
+CMD ["flask","run","--debug","-h","0.0.0.0"]
