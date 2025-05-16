@@ -174,6 +174,28 @@ def review(patient_id):
         flash(message)
         return render_template('get_one.html')
 
+# search for patient
+@bp.route('/search', methods=['POST','GET'])
+@login_required
+def search():
+    if request.method == 'POST':
+        try:
+            # search = request.form['search']
+            patient = Patient.search()
+            if not patient:
+                flash('No record found')
+                return redirect(url_for('ui.search'))
+            
+            if type(patient) is dict:
+                session['current_patient'] = patient
+                # return redirect(url_for('ui.review', patient_id=patient['national_id']))
+            elif type(patient) is list:
+                g.records = patient
+                # return render_template('get_all.html')
+        except:
+            flash(traceback.print_last())
+    return render_template('search.html')
+
 # posting form to database
 @bp.route('/post/<save>/<nat_id>', methods=['POST','GET'])
 @login_required

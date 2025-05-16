@@ -174,6 +174,27 @@ class PatientDAO:
         self.patient['demographic'] = data
         return self.patient
 
+    def search(self):
+        # ToDo: add :- search by date of diagnosis
+        # search by national ID
+        if request.form['search_type'] == 'national id':
+            nat_id = request.form['search']
+            return getter.read('patient',{'national_id':nat_id})
+        # search by patient names & date of birth
+        if request.form['search_type'] == 'name':
+            name = request.form['first_name_search']
+            surname = request.form['surname_search']
+            dob = request.form['dob_search']
+            if name and surname and dob:
+                return getter.read('patient',{'firstname':name,'lastname':surname,'dob':dob})
+            elif name and surname:
+                return getter.read('patient',{'firstname':name,'lastname':surname})
+            elif name and dob:
+                return getter.read('patient',{'firstname':name,'dob':dob})
+            elif name:
+                return getter.read('patient',{'firstname':name})
+        if self.patient: return self.patient
+
     def get_records(self):
         return getter.get_all('patient')
 

@@ -5,3 +5,5 @@ __pycache__/*
 *.pem
 flask_sessions/*
 admin.py
+*.pdf
+*.pages

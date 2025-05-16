@@ -1,8 +1,9 @@
 import os
+import ssl
 from flask import Flask,render_template, request, current_app
 # from flask_mysqldb import MySQL
 # from mysql import connector
-# import yaml 
+# import yaml
 # noSQL db import for authentication: mongodb
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
@@ -30,30 +31,29 @@ from werkzeug.security import generate_password_hash
 # ============================================
 # connecting to noSQLdb: i.e. mongodb;
 # ============================================
-uri = "mongodb+srv://cluster0.7nocv.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority"
+uri = "mongodb+srv://senkatanacluster0.r0ug9.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority&appName=SenkatanaCluster0"
 # client = MongoClient(os.environ['noSQL_DB_CONN'])
-# client = MongoClient("mongodb://localhost:27017/?directConnection=true")
-cert_file = 'modules/X509-cert-1923843719370881966.pem'
+# client = MongoClient("mongodb://localhost:2701/?directConnection=true")
+cert_file = os.path.realpath('beta/modules/X509-cert-2242597025058419538.pem')
 # cert_file = 'modules/X509-cert-5106636011077533725.pem'
-client = MongoClient(uri,
-                tls=True,
-                tlsCertificateKeyFile=cert_file,
-                server_api=ServerApi('1'))
+client = MongoClient(
+    uri, tls=True, tlsCertificateKeyFile=cert_file, tlsAllowInvalidCertificates=True
+)
 
 def noSQLdb(collection='test'):
     db = client["les_can_reg"]
     col = db[collection]
     return col
 
-# def create_admin():
-#     admin = {
-#         'name': 'Ramoeletsi Ramoeletsi',
-#         'username': 'admin',
-#         'email': 'tester@test.com',
-#         'user_type': 'admin',
-#         'password': generate_password_hash('PassW0rd')
-#     }
-#     create.create('admin',admin)
+def create_admin():
+    admin = {
+        'name': 'Ramoeletsi Ramoeletsi',
+        'username': 'admin',
+        'email': 'tester@test.com',
+        'user_type': 'admin',
+        'password': generate_password_hash('PassW0rd')
+    }
+    create.create('admin',admin)
 
 if __name__ == '__main__':
     noSQLdb()

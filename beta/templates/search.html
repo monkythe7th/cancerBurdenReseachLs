@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}
+Cancer Burden Research Project
+{% endblock %}
+{% block header %}
+<h1>
+    Lesotho Digital Cancer Registry System
+</h1>
+<h2>
+    Patient Search
+</h2>
+{% endblock %}
+{% block content %}
+<section class="ui">
+    <form method="post" class="form">
+        <div class="form--div">
+            <input type="radio" id="search_by_id" name="search_type" value="national id" checked>
+            <label for="search_by_id">Search by National ID</label>
+            <input type="text" class="input" id="id_search" name="id_search" placeholder="Enter National ID" required>
+            <input type="radio" id="search_by_name" name="search_type" value="name">
+            <label for="search_by_name">Search by Name</label>
+            <input type="text" class="input" id="surname_search" name="surname_search" placeholder="Enter Surname" disabled>
+            <input type="text" class="input" id="first_name_search" name="first_name_search" placeholder="Enter First Name" disabled>
+            <input type="text" class="input" id="dob_search" name="dob_search" placeholder="Enter Date of Birth" disabled>
+        </div>
+        <button type="submit" class="btn">Search</button>
+    </form>
+    <!-- display search results here -->
+    {% if g.records %}
+    <div class="search-results">
+        <h3>Search Results</h3>
+        <table class="patients">
+            <tr class="table--header">
+                <th>National ID</th>
+                <th>Facility ID</th>
+                <th>Names</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Phone Number</th>
+            </tr>
+            {% for patient in g.records %}
+            <!-- patient cards go here, -->
+            <tr class="patient">
+                <td class="patient--id"><a href="{{ url_for('ui.review',patient_id=patient['national_id']) }}">{{
+                        patient["national_id"] }}</a></td>
+                <td class="patient--facility_id">{{ patient["demographic"]["facility_id"] }}</td>
+                <td class="patient--names">{{ patient["demographic"]["firstname"]~" "~patient["demographic"]["lastname"] }}</td>
+                <td class="patient--gender">{{ patient["demographic"]["gender"] }}</td>
+                <td class="patient--age">{{ patient["demographic"]["age"] }}</td>
+                <td class="patient--phone">{{ patient["demographic"]["phone"] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+    {% if g.error %}
+    <div class="error">
+        <h3>{{ g.error }}</h3>
+    </div>
+    {% endif %}
+
+</section>
+{% endblock %}

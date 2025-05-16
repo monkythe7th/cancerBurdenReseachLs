@@ -76,5 +76,21 @@ $(document).ready(()=>{
         $('#password').attr('type', type)
     })
 
+    $('#search_by_id').click(() => {
+        $('#id_search').attr('disabled', false).focus();
+        $('#surname_search').attr('disabled', true);
+        $('#first_name_search').attr('disabled', true);
+        $('#dob_search').attr('disabled', true);
+        // console.log('search by id')
+    })
+
+    $('#search_by_name').click(() => {
+        $('#id_search').attr('disabled', true);
+        $('#surname_search').attr('disabled', false).focus();
+        $('#first_name_search').attr('disabled', false);
+        $('#dob_search').attr('disabled', false);
+        // console.log('search by name')
+    })
+
 
 })
