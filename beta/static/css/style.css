@@ -116,7 +116,7 @@ header img.logo {
 }
 
 .ui .form--div.full__width.screening__results--div {
-    height: 90px;
+    height: fit-content;
 }
 
 .ui .form--div.full__width textarea {
@@ -145,6 +145,7 @@ header img.logo {
     margin: 2.5px auto 12.5px;
     padding: 5px;
     width: 90%;
+    display: block;
 }
 
 .auth--form .form--div #eye {
@@ -157,6 +158,7 @@ header img.logo {
 .input.screening--input[type="radio"],
 .input[type='checkbox'] {
     width: 50px;
+    display: inline-block;
 }
 
 .form--div label {

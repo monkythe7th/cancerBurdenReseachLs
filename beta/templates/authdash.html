@@ -28,11 +28,12 @@ Cancer Burden Research Project
         {%endfor %}
         </ul>
     </div>
-    
+    {% if g.user.user_type == 'admin' %}
     <a href="{{ url_for('auth.create_user') }}" class="button--opts">
         <i></i>
         <p>create User</p>
     </a>
+    {% endif %}
     <a href="{{ url_for('auth.update_user') }}" class="button--opts">
         <i></i>
         <p>update user</p>

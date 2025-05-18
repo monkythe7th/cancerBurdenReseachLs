@@ -15,6 +15,7 @@
     <img class="logo" src="{{ url_for('static', filename='imgs/photo_1.png') }}" alt="logo1">
     <!-- <img class="logo" src="{{ url_for('static', filename='imgs/photo_2.png') }}" alt="logo2"> -->
 {% block header %}{% endblock %}
+<p class="">user: {{ g.user.name }}     role: {{ g.user.user_type }}</p>
 </header>
 <main class="main clear" id="main">
     {% block sidebar %}{% endblock %}

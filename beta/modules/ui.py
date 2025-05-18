@@ -14,6 +14,7 @@ Patient = PatientDAO()
 def demographic():
     error = None
     patient = None
+    Patient.patient = {}
     if request.method == 'POST':
         try:
             patient = Patient.demographic()

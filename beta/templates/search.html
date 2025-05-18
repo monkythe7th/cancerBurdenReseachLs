@@ -10,15 +10,22 @@ Cancer Burden Research Project
     Patient Search
 </h2>
 {% endblock %}
+{% block sidebar %}
+<div class="sidebar">
+    <ul class="breadcrumbs">
+        <li><a href="{{ url_for('index') }}">Dashboard</a></li>
+    </ul>
+</div>
+{% endblock %}
 {% block content %}
-<section class="ui">
+<section class="ui search__ui">
     <form method="post" class="form">
         <div class="form--div">
             <input type="radio" id="search_by_id" name="search_type" value="national id" checked>
-            <label for="search_by_id">Search by National ID</label>
+            <label for="search_by_id" class="radio__check--label">Search by National ID</label>
             <input type="text" class="input" id="id_search" name="id_search" placeholder="Enter National ID" required>
             <input type="radio" id="search_by_name" name="search_type" value="name">
-            <label for="search_by_name">Search by Name</label>
+            <label for="search_by_name" class="radio__check--label">Search by Name</label>
             <input type="text" class="input" id="surname_search" name="surname_search" placeholder="Enter Surname" disabled>
             <input type="text" class="input" id="first_name_search" name="first_name_search" placeholder="Enter First Name" disabled>
             <input type="text" class="input" id="dob_search" name="dob_search" placeholder="Enter Date of Birth" disabled>

@@ -179,7 +179,7 @@ class PatientDAO:
         # search by national ID
         if request.form['search_type'] == 'national id':
             nat_id = request.form['search']
-            return getter.read('patient',{'national_id':nat_id})
+            return getter.read_one('patient',{'national_id':nat_id})
         # search by patient names & date of birth
         if request.form['search_type'] == 'name':
             name = request.form['first_name_search']
@@ -200,7 +200,7 @@ class PatientDAO:
 
     def get_one_record(self,nat_id=None):
         if self.patient: return self.patient
-        return getter.read('patient',{'national_id':nat_id})
+        return getter.read_one('patient',{'national_id':nat_id})
 
     def set_patient(self, patient: dict) -> None:
         self.patient = patient
@@ -208,7 +208,7 @@ class PatientDAO:
     def post_record(self, nat_id):
         if nat_id and self.patient: 
             if self.patient['national_id'] == nat_id:
-                patient = getter.read('patient',{'national_id':nat_id})
+                patient = getter.read_one('patient',{'national_id':nat_id})
             if patient: return 'patient already exists'
             create.create('patient', self.patient)
         

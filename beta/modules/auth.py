@@ -26,7 +26,7 @@ def admin_only(view):
 def read_write_perm(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-        if g.user['user_type'] == 'admin' or g.user['user_type'] == 'registrar' or g.user['user_type'] != None: return view(**kwargs)
+        if g.user['user_type'] == 'admin' or g.user['user_type'] == 'registrar': return view(**kwargs)
         return redirect(url_for('index'))
     return wrapped_view
 
@@ -37,7 +37,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
         error = None
-        user = getter.read('admin',{'username':username})
+        user = getter.read_one('admin',{'username':username})
         if not user:
             error = "invalid username"
             flash(error)
@@ -53,7 +53,7 @@ def login():
 # creating a new user
 @bp.route('/create_user', methods=['POST','GET'])
 @login_required
-# @admin_only
+@admin_only
 def create_user():
     if request.method == 'POST':
         fullName = request.form['fullname']
@@ -70,7 +70,7 @@ def create_user():
         }
         error = None
         try:
-            u = getter.read('admin',{'username':username})
+            u = getter.read_one('admin',{'username':username})
             if u: flash('')
             create.create('admin',user)
         except Exception:
@@ -97,5 +97,5 @@ def load_logged_user():
     if not uid:
         g.user = None
     else:
-        g.user = getter.read('admin',{'username':uid})
+        g.user = getter.read_one('admin',{'username':uid})
 
