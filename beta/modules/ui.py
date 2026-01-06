@@ -1,5 +1,5 @@
 import traceback
-from flask import Flask, Blueprint, render_template, request, redirect, url_for, g, flash, session
+from flask import Flask, Blueprint, render_template, request, redirect, url_for, g, flash, session, jsonify
 from .patientDAO import *
 from .auth import *
 from ..api import read as getter
@@ -76,15 +76,16 @@ def tumour(nat_id):
         finally:
             if error is None:
                 session['current_patient'] = patient
-                return redirect(url_for('ui.treatment'))
+                return redirect(url_for('ui.treatment', patient_id=g.patient['national_id']))
             flash(error)
     return render_template('tumour_form.html')
 
 # recommended treatment form
-@bp.route('/treatment', methods=['POST','GET'])
+@bp.route('/treatment/', defaults={'patient_id':0}, methods=['POST','GET'])
+@bp.route('/treatment/<patient_id>', methods=['POST','GET'])
 @login_required
 @read_write_perm
-def treatment():
+def treatment(patient_id):
     patient = session['current_patient']
     error = None
     if request.method == 'POST':
@@ -95,7 +96,7 @@ def treatment():
         finally:
             if error is None:
                 session['current_patient'] = patient
-                return redirect(url_for('ui.review', patient_id=patient['national_id']))
+                return redirect(url_for('ui.review', patient_id=patient_id))
             flash(error)
     return render_template('treatment.html')
 
@@ -121,6 +122,9 @@ def update_record(form):
             return redirect(url_for('ui.treatment'))
         elif form == 'demographic':
             return redirect(url_for('ui.update'))
+    else:
+        flash('No patient record selected')
+        return redirect(url_for('ui.search'))
 
 @bp.route('/update/p', methods=['POST','GET'])
 def update():
@@ -188,13 +192,21 @@ def search():
                 return redirect(url_for('ui.search'))
             
             if type(patient) is dict:
-                session['current_patient'] = patient
-                # return redirect(url_for('ui.review', patient_id=patient['national_id']))
+                patient['_id'] = str(patient['_id'])
+                session['current_patient'] = jsonify(patient)
+                return redirect(url_for('ui.review', patient_id=patient['national_id']))
             elif type(patient) is list:
                 g.records = patient
                 # return render_template('get_all.html')
         except:
             flash(traceback.print_last())
+        finally:
+            if 'records' in g:
+                return g.records if g.records else redirect(url_for('ui.search'))
+            elif 'current_patient' in session:
+                return session['current_patient'] if session['current_patient'] else redirect(url_for('ui.search'))
+            else:
+                flash('No record found')
     return render_template('search.html')
 
 # posting form to database

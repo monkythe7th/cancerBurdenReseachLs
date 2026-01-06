@@ -178,7 +178,7 @@ class PatientDAO:
         # ToDo: add :- search by date of diagnosis
         # search by national ID
         if request.form['search_type'] == 'national id':
-            nat_id = request.form['search']
+            nat_id = request.form['id_search']
             return getter.read_one('patient',{'national_id':nat_id})
         # search by patient names & date of birth
         if request.form['search_type'] == 'name':

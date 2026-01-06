@@ -93,4 +93,21 @@ $(document).ready(()=>{
     })
 
 
+
 })
+
+async () => {
+    try {
+        const response = await fetch('/ui/search')
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data);
+        } else {
+            console.error('Error fetching data:', response.statusText);
+        }
+    }catch (error) {
+        console.error('Fetch error:', error);
+    }finally {
+        // Any cleanup actions can be performed here
+    }
+};

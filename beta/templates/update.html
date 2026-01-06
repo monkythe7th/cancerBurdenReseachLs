@@ -28,7 +28,7 @@ Cancer Burden Research Project
 {% block content %}
 <section class="ui">
     {% with messages = get_flashed_messages() %}
-        {% if messages %}
+        {% if messages != "None" %}
             {% for message in messages %}
             <p>{{ message }}</p>
             {% endfor %}
